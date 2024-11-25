@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/11/25 19:42:44 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/11/25 20:10:54 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ typedef struct	s_map
 
 int	ft_file_parsing_management(char *name_map);
 int	ft_is_not_a_directory(char *name_map);
+
+// error_messages_management
+
+void	ft_error_messages_management(int code_error);
 
 
 #endif
