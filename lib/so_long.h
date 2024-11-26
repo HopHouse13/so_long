@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/11/25 20:10:54 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/11/26 19:02:31 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 // aSupp
-# include <stdio.h>
+# include <stdlib.h> // malloc
+# include <stdio.h> // printf
 //aSupp
 # define RESET "\033[0m"
 # define BLACK "\033[30m"
@@ -34,14 +35,22 @@ typedef struct	s_map
 	char 		**map;
 }				t_map;
 
-// file_parsing
+// Fonctions du parsing du fichier
 
-int	ft_file_parsing_management(char *name_map);
-int	ft_is_not_a_directory(char *name_map);
+int		ft_file_parsing_management(char *name_map);
+int		ft_is_not_a_directory(char *name_map);
+int		ft_existing_file(char *name_map);
+int		ft_valid_extension(char *name_map);
+//int		ft_file_not_openable(char *name_map);
+int		ft_empty_file(char *name_map);
 
-// error_messages_management
+
+// fonction de la gestion des messages d'erreurs
 
 void	ft_error_messages_management(int code_error);
 
+// Tools
+
+int		ft_strlen(const char *s);
 
 #endif
