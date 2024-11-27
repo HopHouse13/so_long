@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/11/26 19:02:31 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/11/26 21:33:41 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		ft_file_parsing_management(char *name_map);
 int		ft_is_not_a_directory(char *name_map);
 int		ft_existing_file(char *name_map);
 int		ft_valid_extension(char *name_map);
-//int		ft_file_not_openable(char *name_map);
+int		ft_file_not_openable(char *name_map);
 int		ft_empty_file(char *name_map);
 
 

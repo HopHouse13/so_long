@@ -1,5 +1,6 @@
 {
 	"editor.codeActions.triggerOnFocusChange": true,
 	"files.autoSaveWorkspaceFilesOnly": false,
-	"files.autoSaveWhenNoErrors": false
+	"files.autoSaveWhenNoErrors": false,
+	"C_Cpp.errorSquiggles": "disabled"
 }

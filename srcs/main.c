@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:29:05 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/11/26 16:33:06 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/11/27 00:23:03 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 			} */
 		else
 		{
-			ft_error_messages_management(ft_file_parsing_management(av[1]));
+			//t_error_messages_management(ft_file_parsing_management(av[1]));
 			return (1);	
 		}
 	}

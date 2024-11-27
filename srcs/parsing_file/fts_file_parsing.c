@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 19:22:37 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/11/26 19:24:30 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/11/27 01:34:04 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,25 @@ int	ft_is_not_a_directory(char *name_map)
 		close(fd);
 		return (1);
 	}
-	else
-		return (0);
+	return (0);
 }
+// O_EXCL peut avoir un souci avec les lien symboliques selon les systemes. printf("[%d]\n", fd);
 
+//-1 -> non creation -> fichier existe deja -> return (0)
+// !-1 -> fichier inexistant -> creation du fichier -> return (1)
+// unlink(name_map);
 int	ft_existing_file(char *name_map)
 {
 	int	fd;
 
-	fd = open(name_map, O_RDONLY);
-	if (fd == -1)
-		return (1);
-	else
+	fd = open(name_map, O_CREAT | O_EXCL, 0777);
+	if (fd != -1)
 	{
 		close(fd);
-		return (0);
+		//unlink(name_map);
+		return (1);
 	}
+	return (0);
 }
 
 int	ft_valid_extension(char *name_map)
@@ -51,14 +54,18 @@ int	ft_valid_extension(char *name_map)
 		|| name_map[size - 2] != 'e'
 		|| name_map[size - 1] != 'r')
 		return (1);
-	else
-		return (0);
-}
-/* int	ft_file_not_openable(char *name_map)
-{
-	
 	return (0);
-} */
+}
+int	ft_file_not_openable(char *name_map)
+{
+	int	fd;
+
+	fd = open(name_map, O_RDONLY);
+	if (fd == -1)
+		return (1);
+	close(fd);
+	return (0);
+}
 
 int	ft_empty_file(char *name_map)
 {
