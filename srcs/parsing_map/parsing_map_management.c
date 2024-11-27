@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_map.c                                      :+:      :+:    :+:   */
+/*   parsing_map_management.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:10:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/11/25 19:12:34 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/11/27 02:22:20 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,27 @@
 	8 -> manque le player (P)
 	9 -> manque la sortie (E)
 	10 -> manque un collectible (C) */
-
-/* int	ft_map_parsing_management(char *map) // map non carre (maybe arg d'entree -> double tableau)
+	
+int	ft_map_parsing_management(char *file)
 {
+	// faire un double tableau avec les lignes et collones puis l'envoyer aux fonctions de check
+	int	code_error;
+	
+	code_error = 0;
 	if (ft_rectangular(map) != 0)
-		return (ft_rectangular(map));
+		code_error = 6;
 	else if (ft_surrounded_by_walls(map) != 0)
-		return (ft_surrounded_by_walls(map));
+		code_error = 7;
 	else if (ft_player_exists(map) != 0)
-		return (ft_player_exists(map));
+		code_error = 8;
 	else if (ft_exit_exists(map) != 0)
-		return (ft_exit_exists(map));
+		code_error = 9;
 	else if (ft_collectible_exists(map) != 0)
-		return (ft_collectible_exists(map));
+		code_error = 10;
+	if (code_error != 0)
+	{
+		ft_error_messages_management(code_error);
+		return (1);
+	}
 	return (0);
-} */
+}

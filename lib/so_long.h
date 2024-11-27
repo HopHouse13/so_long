@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/11/26 21:33:41 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/11/27 02:09:33 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,21 @@ typedef struct	s_map
 
 // Fonctions du parsing du fichier
 
-int		ft_file_parsing_management(char *name_map);
-int		ft_is_not_a_directory(char *name_map);
-int		ft_existing_file(char *name_map);
-int		ft_valid_extension(char *name_map);
-int		ft_file_not_openable(char *name_map);
-int		ft_empty_file(char *name_map);
+int		ft_file_parsing_management(char *file);
+int		ft_is_not_a_directory(char *file);
+int		ft_existing_file(char *file);
+int		ft_valid_extension(char *file);
+int		ft_file_not_openable(char *file);
+int		ft_empty_file(char *file);
 
+// Fonctions du parsing de la map
+
+int		ft_file_parsing_management(char *map)
+// int		ft_rectangular(char *map);
+// int		ft_surrounded_by_walls(char *map);
+// int		ft_player_exists(char *map);
+// int		ft_exit_exists(char *map);
+// int		ft_collectible_exists(char *map);
 
 // fonction de la gestion des messages d'erreurs
 
