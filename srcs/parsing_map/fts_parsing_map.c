@@ -6,13 +6,13 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 02:13:57 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/11/27 02:16:04 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/11/28 16:56:24 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/so_long.h"
 
-int	ft_rectangular(char *map);
+/* int	ft_rectangular(char *map);
 {
 	
 	return (0);
@@ -41,3 +41,4 @@ int	ft_collectible_exists(char *map);
 	
 	return (0);
 }
+ */

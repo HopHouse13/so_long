@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:29:05 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/11/27 02:20:05 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/11/28 19:13:00 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 		if (ft_file_parsing_management(av[1]) == 0) // fichier valide
 			if (ft_map_parsing_management(av[1]) == 0) // map validee
 			{
-				printf(CYAN"[isOK]\n"RESET);/* ft_so_long(av[1]); */
+				//printf(CYAN"[isOK]\n"RESET); /* ft_so_long(av[1]); */
 				return (0);
 			}
 		return (1);	

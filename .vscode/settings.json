@@ -2,5 +2,8 @@
 	"editor.codeActions.triggerOnFocusChange": true,
 	"files.autoSaveWorkspaceFilesOnly": false,
 	"files.autoSaveWhenNoErrors": false,
-	"C_Cpp.errorSquiggles": "disabled"
+	"C_Cpp.errorSquiggles": "disabled",
+	"files.associations": {
+		"so_long.h": "c"
+	}
 }
