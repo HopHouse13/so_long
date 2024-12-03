@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:53:58 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/11/29 00:15:38 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/03 00:35:37 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,29 @@ char	*ft_strjoin(char *s1, char *s2)
 	dest[i + j] = '\0';
 	free(s1);
 	return (dest);
+}
+
+// fonction fonctionnelle (n'est plus a verifier)
+int	ft_line_character_counter(char *file)
+{
+	int		number_character;
+	char	*one_line;
+	int		fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd == -1) // a confirmer l'utilite !!!!!!!!!!!!!!!!!!!!!!!!!
+		return (0);
+	one_line = get_next_line(fd);
+	number_character = 0;
+	while (one_line[number_character])
+		number_character++;
+	number_character--; // car il compte aussi le '\0' et nous voulons uniquement le nombre de caractere.
+	while (one_line != NULL) // je finis de lire la globalite de la map car si je lis une seule ligne avec gnl, le reste (dans gnl) de la ligne suivante n'est pas libere. solution bien trop complique pour faire autremment.(-> declaration de pointeur de pointeur de 'rest' dans cette fonction pour elle doit etre transmise a gnl en **rest).
+	{
+		free(one_line);
+		one_line = get_next_line(fd);
+	}
+	free(one_line);
+	close(fd);
+	return (number_character);
 }

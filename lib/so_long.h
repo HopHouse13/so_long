@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/11/29 04:04:16 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/03 04:05:59 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdint.h>
-// aSupp
 # include <stdlib.h> // malloc
-# include <stdio.h> // printf
-//aSupp
+# include <stdio.h> // printf -> A SUPP
+
 # define RESET "\033[0m"
 # define BLACK "\033[30m"
 # define RED "\033[31m"
@@ -47,21 +46,18 @@ int		ft_empty_file(char *file);
 
 // Fonctions du parsing de la map
 
-int			ft_map_parsing_management(char *file);
-// int		ft_rectangular(char *map);
-// int		ft_surrounded_by_walls(char *map);
-// int		ft_player_exists(char *map);
-// int		ft_exit_exists(char *map);
-// int		ft_collectible_exists(char *map);
+int		ft_map_parsing_management(char *file);
+int		ft_rectangular(char **map);
+int		ft_surrounded_by_walls(char **map);
+int		ft_player_exists(char **map);
+int		ft_exit_exists(char **map);
+int		ft_collectible_exists(char **map);
 
 // Fonctions creation de la map
 
-void	ft_make_tab_map(char *file);
+char	**ft_make_tab_map(char *file);
 int		ft_line_counter(char *file);
-int		ft_line_character_counter(char *file);
-char	 **ft_init_values(char **map, char *file);
-
-
+char	*ft_strdup(const char *s_src);
 void	ft_free_double_tab(char **map);
 
 // fonction de la gestion des messages d'erreurs
@@ -74,6 +70,7 @@ int		ft_strlen(const char *s);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strjoin(char *str, char *buffer);
+// int		ft_line_character_counter(char *file);
 
 // gnl
 

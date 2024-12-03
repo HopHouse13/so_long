@@ -1,16 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fts_make_map.c                                     :+:      :+:    :+:   */
+/*   make_tab_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 01:00:20 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/11/29 04:01:30 by ubuntu           ###   ########.fr       */
+/*   Created: 2024/11/28 18:26:53 by ubuntu            #+#    #+#             */
+/*   Updated: 2024/12/03 00:35:13 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/so_long.h"
+
+char	**ft_make_tab_map(char *file)
+{
+	char	 **map;
+	int		i;
+	char	*line;
+	int		fd;
+	int		nb_line;
+
+	nb_line = ft_line_counter(file);
+	map = malloc((nb_line + 1) * sizeof(char *));
+	if (!map)
+		return(NULL);
+	fd = open(file, O_RDONLY);
+	if (fd == -1) // a confirmer l'utilite !!!!!!!!!!!!!!!!!!!!!!!!!
+		return (ft_free_double_tab(map), NULL);
+	i = 0;
+	while (i < nb_line)
+	{
+		line = get_next_line(fd);
+		map[i] = ft_strdup(line);
+		free(line);
+		i++;
+	} 
+	map[i] = NULL;
+	i = 0;
+	close(fd);
+	return (map);
+}
+// fonction fonctionnelle(n'est plus a verifier)
 
 int	ft_line_counter(char *file)
 {
@@ -34,58 +64,36 @@ int	ft_line_counter(char *file)
 	return (number_of_line);
 }
 
-int	ft_line_character_counter(char *file)
+
+
+char	*ft_strdup(const char *s_src)
 {
-	int	number_character;
-	char *one_line;
-	int	fd;
+	char	*s_dup;
+	size_t	i;
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1) // a confirmer l'utilite !!!!!!!!!!!!!!!!!!!!!!!!!
-		return (0);
-	one_line = get_next_line(fd);
-	number_character = 0;
-	while (one_line[number_character])
-		number_character++;
-	number_character--; // car il compte aussi le '\0' et nous voulons uniquement le nombre de caractere.
-	free(one_line);
-	close(fd);
-	return (number_character);
-}
-
-char **ft_init_values(char **map, char *file)
-{
-	int		i;
-	int		j;
-	char	*one_line;
-	int		fd;
-
-	fd = open(file, O_RDONLY);
-	if (fd == -1) // a confirmer l'utilite !!!!!!!!!!!!!!!!!!!!!!!!!
-		return (0);
+	s_dup = malloc(sizeof(char) * ft_strlen(s_src) + 1);
+	if (!s_dup)
+		return (NULL);
 	i = 0;
-	while(map[i])
+	while (s_src[i])
 	{
-		one_line = get_next_line(fd);
-		j = 0;
-		while (one_line[j])
-		{
-			*map[j] = one_line[j];
-			j++;
-		}
-		free(one_line);
+		s_dup[i] = s_src[i];
 		i++;
 	}
-	close(fd);
-	return (map);
+	s_dup[i] = '\0';
+	return (s_dup);
 }
 
 void	ft_free_double_tab(char **map)
 {
 	int	i;
 	
-	i = -1;
-	while(map[++i])
+	i = 0;
+	while(map[i] != NULL)
+	{
 		free(map[i]);
+		i++;
+	}
 	free(map);
 }
+

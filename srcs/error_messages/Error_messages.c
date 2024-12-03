@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 18:02:13 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/11/27 01:46:58 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/03 04:05:07 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	ft_error_messages_management(int code_error)
 	else if (code_error == 7)
 		write(2, RED"Error\nMap non encadrée par des murs.\n"RESET, 47);
 	else if (code_error == 8)
-		write(2, RED"Error\nMais où est le joueur?!\n"RESET, 40);
+		write(2, RED"Error\nNombre de joueur non valide.\n"RESET, 45);
 	else if (code_error == 9)
-		write(2, RED"Error\nT'as oublié la sortie bro...\n"RESET, 45);
+		write(2, RED"Error\nNombre de sortie non valide.\n"RESET, 45);
 	else if (code_error == 10)
 		write(2, RED"Error\nAvec des collectables, c'est plus fun.\n"RESET, 55);
 }

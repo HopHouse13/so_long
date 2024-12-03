@@ -4,6 +4,7 @@
 	"files.autoSaveWhenNoErrors": false,
 	"C_Cpp.errorSquiggles": "disabled",
 	"files.associations": {
-		"so_long.h": "c"
+		"so_long.h": "c",
+		"type_traits": "c"
 	}
 }
