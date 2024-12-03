@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/03 04:05:59 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/03 21:24:21 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@
 # define CYAN "\033[36m"
 # define WHITE "\033[37m"
 
-typedef struct	s_map
+typedef struct	s_game
 {
-	char 		**map;
-}				t_map;
+	char 		**tab_map;
+}				t_game;
 
 // Fonctions du parsing du fichier
 
-int		ft_file_parsing_management(char *file);
+int		ft_file_parsing_manag(char *file);
 int		ft_is_not_a_directory(char *file);
 int		ft_existing_file(char *file);
 int		ft_valid_extension(char *file);
@@ -46,7 +46,7 @@ int		ft_empty_file(char *file);
 
 // Fonctions du parsing de la map
 
-int		ft_map_parsing_management(char *file);
+int		ft_map_parsing_manag(char *file);
 int		ft_rectangular(char **map);
 int		ft_surrounded_by_walls(char **map);
 int		ft_player_exists(char **map);
@@ -55,14 +55,14 @@ int		ft_collectible_exists(char **map);
 
 // Fonctions creation de la map
 
-char	**ft_make_tab_map(char *file);
+t_game	*ft_make_tab_map(char *file);
 int		ft_line_counter(char *file);
 char	*ft_strdup(const char *s_src);
 void	ft_free_double_tab(char **map);
 
 // fonction de la gestion des messages d'erreurs
 
-void	ft_error_messages_management(int code_error);
+void	ft_error_messages_manag(int code_error);
 
 // Tools
 

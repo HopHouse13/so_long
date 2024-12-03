@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 18:02:13 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/03 04:05:07 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/03 21:31:56 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 	// 9 -> manque la sortie (E)
 	// 10 -> manque un item (C)
 	
-void	ft_error_messages_management(int code_error)
+void	ft_error_messages_manag(int code_error)
 {
 	if (code_error == 1)
 		write(2, RED"Error\nL'argument d'entrée est un repertoire.\n"RESET, 55);
@@ -46,4 +46,6 @@ void	ft_error_messages_management(int code_error)
 		write(2, RED"Error\nNombre de sortie non valide.\n"RESET, 45);
 	else if (code_error == 10)
 		write(2, RED"Error\nAvec des collectables, c'est plus fun.\n"RESET, 55);
+	else if (code_error == 11)
+		write(2, RED"Error\nCarte non jouable... no fun.\n"RESET, 45);
 }

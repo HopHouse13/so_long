@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:09:51 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/11/27 02:01:40 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/03 21:23:01 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 	9 -> manque la sortie (E)
 	10 -> manque un item (C) */
 
-int	ft_file_parsing_management(char *file)
+int	ft_file_parsing_manag(char *file)
 {
 	int	code_error;
 	
@@ -42,8 +42,8 @@ int	ft_file_parsing_management(char *file)
 		code_error = 5;
 	if (code_error != 0)
 	{
-		ft_error_messages_management(code_error);
-		return (1);
+		ft_error_messages_manag(code_error);
+		return (0);
 	}
-	return (0);
+	return (1);
 }

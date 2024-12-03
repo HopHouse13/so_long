@@ -6,39 +6,39 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 18:26:53 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/03 00:35:13 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/03 21:06:11 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/so_long.h"
 
-char	**ft_make_tab_map(char *file)
+t_game	*ft_make_tab_map(char *file)
 {
-	char	 **map;
+	t_game	 *map;
 	int		i;
 	char	*line;
 	int		fd;
 	int		nb_line;
 
-	nb_line = ft_line_counter(file);
-	map = malloc((nb_line + 1) * sizeof(char *));
+	map = malloc(sizeof(t_game));
 	if (!map)
-		return(NULL);
+		return (NULL);
+	nb_line = ft_line_counter(file);
+	map->tab_map = malloc((nb_line + 1) * sizeof(char *));
+	if (!map->tab_map)
+		return(free(map), NULL);
 	fd = open(file, O_RDONLY);
-	if (fd == -1) // a confirmer l'utilite !!!!!!!!!!!!!!!!!!!!!!!!!
-		return (ft_free_double_tab(map), NULL);
-	i = 0;
-	while (i < nb_line)
+	if (fd == -1)
+		return (ft_free_double_tab(map->tab_map), free(map), NULL);
+	i = -1; // pour gagner des lignes
+	while (++i < nb_line)
 	{
 		line = get_next_line(fd);
-		map[i] = ft_strdup(line);
+		map->tab_map[i] = ft_strdup(line);
 		free(line);
-		i++;
 	} 
-	map[i] = NULL;
-	i = 0;
-	close(fd);
-	return (map);
+	map->tab_map[i] = NULL;
+	return (close(fd), map);
 }
 // fonction fonctionnelle(n'est plus a verifier)
 
@@ -49,7 +49,7 @@ int	ft_line_counter(char *file)
 	int		fd;
 		
 	fd = open(file, O_RDONLY);
-	if (fd == -1) // a confirmer l'utilite !!!!!!!!!!!!!!!!!!!!!!!!!
+	if (fd == -1)
 		return (0);
 	line = get_next_line(fd);
 	number_of_line = 0;
