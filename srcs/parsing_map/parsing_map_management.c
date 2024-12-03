@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:10:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/03 21:23:15 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/03 23:35:00 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@
 
 	// faire un double tableau avec les lignes et collones puis l'envoyer aux fonctions de check
 
-int	ft_map_parsing_manag(char *file)
+int	ft_map_parsing_manag(char *file, t_game *map)
 {
-	t_game	*map;
-	// char	**map;
 	int		code_error;
 	
-	map = ft_make_tab_map(file);
+	map->tab_map = ft_make_tab_map(file, map->tab_map);
 	// int	i = -1;
 	// while (map->tab_map[++i]) // pour verifier
 	// 	printf("%s", map->tab_map[i]); 
@@ -46,7 +44,5 @@ int	ft_map_parsing_manag(char *file)
 		ft_error_messages_manag(code_error);
 		return (0);
 	}
-	ft_free_double_tab(map->tab_map); // pour le moment
-	free(map); // pour le moment
 	return (1);
 }

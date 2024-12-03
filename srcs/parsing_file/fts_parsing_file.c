@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 19:22:37 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/11/28 17:02:20 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/03 23:44:01 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_existing_file(char *file)
 	if (fd != -1)
 	{
 		close(fd);
-		unlink(file);
+		unlink(file); // surement a supp. -> fonction interdite (elle supp. le fichier cree si il m'existe pas)
 		return (1);
 	}
 	return (0);

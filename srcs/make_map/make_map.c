@@ -1,44 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_tab_map.c                                     :+:      :+:    :+:   */
+/*   make_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 18:26:53 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/03 21:06:11 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/03 23:39:24 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/so_long.h"
 
-t_game	*ft_make_tab_map(char *file)
+char	**ft_make_tab_map(char *file, char **tab_map)
 {
-	t_game	 *map;
 	int		i;
 	char	*line;
 	int		fd;
 	int		nb_line;
 
-	map = malloc(sizeof(t_game));
-	if (!map)
-		return (NULL);
 	nb_line = ft_line_counter(file);
-	map->tab_map = malloc((nb_line + 1) * sizeof(char *));
-	if (!map->tab_map)
-		return(free(map), NULL);
+	tab_map = malloc((nb_line + 1) * sizeof(char *));
+	if (!tab_map)
+		return(NULL);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (ft_free_double_tab(map->tab_map), free(map), NULL);
+		return (ft_free_double_tab(tab_map), NULL);
 	i = -1; // pour gagner des lignes
 	while (++i < nb_line)
 	{
 		line = get_next_line(fd);
-		map->tab_map[i] = ft_strdup(line);
+		tab_map[i] = ft_strdup(line);
 		free(line);
 	} 
-	map->tab_map[i] = NULL;
-	return (close(fd), map);
+	tab_map[i] = NULL;
+	close(fd);
+	return (tab_map);
 }
 // fonction fonctionnelle(n'est plus a verifier)
 
@@ -89,11 +86,14 @@ void	ft_free_double_tab(char **map)
 	int	i;
 	
 	i = 0;
-	while(map[i] != NULL)
+	if (map)
 	{
-		free(map[i]);
-		i++;
+		while(map[i] != NULL)
+		{
+			free(map[i]);
+			i++;
+		}
+		free(map);
 	}
-	free(map);
 }
 
