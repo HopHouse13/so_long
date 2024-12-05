@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:29:05 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/03 23:38:32 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/05 23:30:30 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 			return (1);
 		if (ft_file_parsing_manag(av[1])) // fichier valide
 			if (ft_map_parsing_manag(av[1], map)) // map valide
-				//if(ft_flood_fill_manag(void) == 0) // jouabilite valide
+				if(ft_flood_fill_manag(map)) // jouabilite valide
 				{
 					printf(CYAN"[isOK]\n"RESET);
 					ft_free_double_tab(map->tab_map); // PAUL <3 Quand on free le pointeur de la struct -> faut il free toutes les pointeurs a l'interieur avant? ou useless?

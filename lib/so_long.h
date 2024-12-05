@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/03 23:13:57 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/05 23:41:28 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,25 @@
 # define CYAN "\033[36m"
 # define WHITE "\033[37m"
 
+typedef struct	s_ff
+{
+	t_game		*ff_map;
+	char		fill;
+}				t_ff;
+
 typedef struct	s_game
 {
 	char 		**tab_map;
+	t_ff		*ff;
+	int			x;
+	int			y;
+	int			map_width; // largeur de la map
+	int			map_height; // hauteur de la map
+	int			abscisse_player;
+	int			ordonnee_player;
+	int			abscisse_exit;
+	int			ordonnee_exit;
+	int			collectible_counter; // compteur de collectibles
 }				t_game;
 
 // Fonctions du parsing du fichier
@@ -47,18 +63,22 @@ int		ft_empty_file(char *file);
 // Fonctions du parsing de la map
 
 int		ft_map_parsing_manag(char *file, t_game *map);
-int		ft_rectangular(char **map);
-int		ft_surrounded_by_walls(char **map);
-int		ft_player_exists(char **map);
-int		ft_exit_exists(char **map);
-int		ft_collectible_exists(char **map);
+int		ft_rectangular(t_game *map);
+int		ft_surrounded_by_walls(t_game *map);
+int		ft_player_exists(t_game *map);
+int		ft_exit_exists(t_game *map);
+int		ft_collectible_exists(t_game *map);
 
 // Fonctions creation de la map
 
-char	**ft_make_tab_map(char *file, char **tab_map);
+void	ft_initialisation_struct_map(t_game *map);
+void	ft_make_tab_map(char *file, t_game *map);
 int		ft_line_counter(char *file);
 char	*ft_strdup(const char *s_src);
-void	ft_free_double_tab(char **map);
+
+// Flood_fill
+
+void	itialisation_flood_fill(t_game *map);
 
 // fonction de la gestion des messages d'erreurs
 
@@ -70,6 +90,7 @@ int		ft_strlen(const char *s);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strjoin(char *str, char *buffer);
+void	ft_free_double_tab(char **map);
 // int		ft_line_character_counter(char *file);
 
 // gnl

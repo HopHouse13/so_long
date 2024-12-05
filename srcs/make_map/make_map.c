@@ -6,13 +6,30 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 18:26:53 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/03 23:39:24 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/05 18:50:12 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/so_long.h"
 
-char	**ft_make_tab_map(char *file, char **tab_map)
+void	ft_initialisation_struct_map(t_game *map)
+{
+	map->tab_map = NULL;
+	map->x = 0;
+	map->y = 0;
+	map->target = '\0';
+	map->fill = '\0';
+	map->map_width = 0;
+	map->map_height = 0;
+	map->abscisse_player = 0;
+	map->ordonnee_player = 0;
+	map->abscisse_exit = 0;
+	map->ordonnee_exit = 0;
+	map->collectible_counter = 0;
+	return ;
+}
+
+void	ft_make_tab_map(char *file, t_game *map)
 {
 	int		i;
 	char	*line;
@@ -20,22 +37,25 @@ char	**ft_make_tab_map(char *file, char **tab_map)
 	int		nb_line;
 
 	nb_line = ft_line_counter(file);
-	tab_map = malloc((nb_line + 1) * sizeof(char *));
-	if (!tab_map)
-		return(NULL);
+	map->tab_map = malloc((nb_line + 1) * sizeof(char *));
+	if (!map->tab_map)
+		return ;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (ft_free_double_tab(tab_map), NULL);
+	{
+		ft_free_double_tab(map->tab_map);
+		return ;
+	}
 	i = -1; // pour gagner des lignes
 	while (++i < nb_line)
 	{
 		line = get_next_line(fd);
-		tab_map[i] = ft_strdup(line);
+		map->tab_map[i] = ft_strdup(line);
 		free(line);
-	} 
-	tab_map[i] = NULL;
+	}
+	map->tab_map[i] = NULL;
 	close(fd);
-	return (tab_map);
+	return ;
 }
 // fonction fonctionnelle(n'est plus a verifier)
 
@@ -81,19 +101,4 @@ char	*ft_strdup(const char *s_src)
 	return (s_dup);
 }
 
-void	ft_free_double_tab(char **map)
-{
-	int	i;
-	
-	i = 0;
-	if (map)
-	{
-		while(map[i] != NULL)
-		{
-			free(map[i]);
-			i++;
-		}
-		free(map);
-	}
-}
 

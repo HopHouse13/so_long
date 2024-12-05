@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:53:58 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/03 00:35:37 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/05 16:50:24 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,24 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (dest);
 }
 
+void	ft_free_double_tab(char **map)
+{
+	int	i;
+	
+	i = 0;
+	if (map)
+	{
+		while(map[i] != NULL)
+		{
+			free(map[i]);
+			i++;
+		}
+		free(map);
+	}
+}
+
 // fonction fonctionnelle (n'est plus a verifier)
+// n'est pas utilisee pour le moment
 int	ft_line_character_counter(char *file)
 {
 	int		number_character;
