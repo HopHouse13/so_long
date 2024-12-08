@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 18:26:53 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/08 19:45:58 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/09 00:44:24 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void	ft_make_tab_map(char *file, t_game *map)
 
 int	ft_line_counter(char *file)
 {
-	char 	*line;
+	char	*line;
 	int		number_of_line;
 	int		fd;
-		
+
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (0);
@@ -78,8 +78,6 @@ int	ft_line_counter(char *file)
 	close(fd);
 	return (number_of_line);
 }
-
-
 
 char	*ft_strdup(const char *s_src)
 {
@@ -98,5 +96,3 @@ char	*ft_strdup(const char *s_src)
 	s_dup[i] = '\0';
 	return (s_dup);
 }
-
-

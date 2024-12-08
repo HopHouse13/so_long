@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 19:22:37 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/03 23:44:01 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/09 00:27:29 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	ft_valid_extension(char *file)
 		return (1);
 	return (0);
 }
+
 int	ft_file_not_openable(char *file)
 {
 	int	fd;

@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 21:14:23 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/08 23:34:55 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/09 00:28:37 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_flood_fill_manag(t_game *map)
 {
 	map->ff = malloc(sizeof(t_game));
 	if (!map->ff)
-    	return (0);
+		return (0);
 	ft_initialisation_struct_ff(map);
 	int i = -1;
 	while (map->ff->tab_map[++i])

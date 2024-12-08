@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:10:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/05 22:41:01 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/09 00:43:17 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 	9 -> manque la sortie (E)
 	10 -> manque un collectible (C) */
 
-	// faire un double tableau avec les lignes et collones puis l'envoyer aux fonctions de check
+	// faire un double tableau avec les lignes et collones puis l'envoyer 
+	// aux fonctions de check
 
 int	ft_map_parsing_manag(char *file, t_game *map)
 {
@@ -26,9 +27,6 @@ int	ft_map_parsing_manag(char *file, t_game *map)
 
 	ft_initialisation_struct_map(map);
 	ft_make_tab_map(file, map);
-	// int	i = -1;
-	// while (map->tab_map[++i]) // pour verifier
-	// 	printf("%s", map->tab_map[i]); 
 	code_error = 0;
 	if (ft_rectangular(map) != 0)
 		code_error = 6;
@@ -45,12 +43,5 @@ int	ft_map_parsing_manag(char *file, t_game *map)
 		ft_error_messages_manag(code_error);
 		return (0);
 	}
-	// printf("[%d]\n", map->map_width);
-	// printf("[%d]\n", map->map_height);
-	// printf("[%d]\n", map->abscisse_player);
-	// printf("[%d]\n", map->ordonnee_player);
-	// printf("[%d]\n", map->abscisse_exit);
-	// printf("[%d]\n", map->ordonnee_exit);
-	// printf("[%d]\n", map->collectible_counter);
 	return (1);
 }

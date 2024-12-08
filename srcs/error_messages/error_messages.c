@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Error_messages.c                                   :+:      :+:    :+:   */
+/*   error_messages.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 18:02:13 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/08 15:21:07 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/09 00:26:24 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../lib/so_long.h"
+#include "../lib/so_long.h"
 
 	// 1 -> l'argument est une repertoire
- 	// 2 -> fichier inexistant
+	// 2 -> fichier inexistant
 	// 3 -> maivaise extention
 	// 4 -> inouvrable (droits)
 	// 5 -> fichier vide
@@ -23,10 +23,10 @@
 	// 8 -> manque le player (P)
 	// 9 -> manque la sortie (E)
 	// 10 -> manque un collectible (C)
-	
+
 	// 11 -> collectibles non accessibles
 	// 12 -> exit non accessible
-	
+
 void	ft_error_messages_manag(int code_error)
 {
 	if (code_error == 1)

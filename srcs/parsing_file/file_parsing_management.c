@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:09:51 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/03 21:23:01 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/09 00:27:44 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 int	ft_file_parsing_manag(char *file)
 {
 	int	code_error;
-	
+
 	code_error = 0;
 	if (ft_is_not_a_directory(file) != 0)
 		code_error = 1;
