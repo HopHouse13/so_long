@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/05 23:41:28 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/08 23:39:37 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,19 @@
 # define CYAN "\033[36m"
 # define WHITE "\033[37m"
 
-typedef struct	s_ff
+typedef struct		s_game
 {
-	t_game		*ff_map;
-	char		fill;
-}				t_ff;
-
-typedef struct	s_game
-{
-	char 		**tab_map;
-	t_ff		*ff;
-	int			x;
-	int			y;
-	int			map_width; // largeur de la map
-	int			map_height; // hauteur de la map
-	int			abscisse_player;
-	int			ordonnee_player;
-	int			abscisse_exit;
-	int			ordonnee_exit;
-	int			collectible_counter; // compteur de collectibles
-}				t_game;
+	struct s_game	*ff; // copie de la map pour le ff
+	char 			**tab_map; // original_map
+	int				map_width; // largeur de la map
+	int				map_height; // hauteur de la map
+	int				col_player;
+	int				line_player;
+	int				col_exit;
+	int				line_exit;
+	int				exit_counter; // compteur de d'exit
+	int				collectible_counter; // compteur de collectibles
+}					t_game;
 
 // Fonctions du parsing du fichier
 
@@ -78,7 +71,11 @@ char	*ft_strdup(const char *s_src);
 
 // Flood_fill
 
-void	itialisation_flood_fill(t_game *map);
+int		ft_flood_fill_manag(t_game *map);
+void	ft_initialisation_struct_ff(t_game *map);
+char	**ft_make_ff_map(t_game *map);
+int		ft_flood_fill(t_game *map, int x, int y);
+
 
 // fonction de la gestion des messages d'erreurs
 

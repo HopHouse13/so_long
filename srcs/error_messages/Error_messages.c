@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 18:02:13 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/03 21:31:56 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/08 15:21:07 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@
 	// 7 -> map non entouree de mur
 	// 8 -> manque le player (P)
 	// 9 -> manque la sortie (E)
-	// 10 -> manque un item (C)
+	// 10 -> manque un collectible (C)
+	
+	// 11 -> collectibles non accessibles
+	// 12 -> exit non accessible
 	
 void	ft_error_messages_manag(int code_error)
 {
@@ -47,5 +50,7 @@ void	ft_error_messages_manag(int code_error)
 	else if (code_error == 10)
 		write(2, RED"Error\nAvec des collectables, c'est plus fun.\n"RESET, 55);
 	else if (code_error == 11)
-		write(2, RED"Error\nCarte non jouable... no fun.\n"RESET, 45);
+		write(2, RED"Error\nCollectible non accessible.\n"RESET, 44);
+	else if (code_error == 12)
+		write(2, RED"Error\nExit non accessible.\n"RESET, 37);
 }
