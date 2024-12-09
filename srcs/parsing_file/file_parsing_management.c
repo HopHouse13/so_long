@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:09:51 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/09 00:27:44 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/09 16:34:19 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_file_parsing_manag(char *file)
 		code_error = 5;
 	if (code_error != 0)
 	{
-		ft_error_messages_manag(code_error);
+		ft_error_messages_file_and_map(code_error);
 		return (0);
 	}
 	return (1);

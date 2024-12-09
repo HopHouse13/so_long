@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/09 01:26:22 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/09 16:15:42 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int		ft_surrounded_by_walls(t_game *map);
 int		ft_player_exists(t_game *map);
 int		ft_exit_exists(t_game *map);
 int		ft_collectible_exists(t_game *map);
+int		ft_other_elem(t_game *map);
+
 
 // Fonctions creation de la map
 
@@ -79,7 +81,8 @@ int		ft_flood_fill(t_game *map, int x, int y);
 
 // fonction de la gestion des messages d'erreurs
 
-void	ft_error_messages_manag(int code_error);
+void	ft_error_messages_file_and_map(int code_error);
+void	ft_error_messages_ff(int code_error);
 
 // Tools
 
