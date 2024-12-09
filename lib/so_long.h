@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/08 23:39:37 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/09 01:26:22 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct		s_game
 {
 	struct s_game	*ff; // copie de la map pour le ff
 	char 			**tab_map; // original_map
-	int				map_width; // largeur de la map
-	int				map_height; // hauteur de la map
+	int				col_map; // largeur de la map
+	int				line_map; // hauteur de la map
 	int				col_player;
 	int				line_player;
 	int				col_exit;

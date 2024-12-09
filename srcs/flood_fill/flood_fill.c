@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 23:32:10 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/09 00:35:49 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/09 01:25:36 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	ft_flood_fill(t_game *map, int line, int col)
 void	ft_initialisation_struct_ff(t_game *map)
 {
 	map->ff->tab_map = ft_make_ff_map(map);
-	map->ff->map_width = map->map_width;
-	map->ff->map_height = map->map_height;
+	map->ff->col_map = map->col_map;
+	map->ff->line_map = map->line_map;
 	map->ff->col_player = map->col_player;
 	map->ff->line_player = map->line_player;
 	map->ff->col_exit = map->col_exit;
@@ -54,11 +54,11 @@ char	**ft_make_ff_map(t_game *map)
 	int		i;
 	char	**ff_map;
 
-	ff_map = malloc((map->map_height + 1) * sizeof(char *));
+	ff_map = malloc((map->line_map + 1) * sizeof(char *));
 	if (!map->tab_map)
 		return (NULL);
 	i = -1;
-	while (++i < map->map_height)
+	while (++i < map->line_map)
 		ff_map[i] = ft_strdup(map->tab_map[i]);
 	ff_map[i] = NULL;
 	return (ff_map);

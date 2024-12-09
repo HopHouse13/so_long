@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 18:26:53 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/09 00:44:24 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/09 01:26:04 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	ft_initialisation_struct_map(t_game *map)
 {
 	map->ff = NULL;
 	map->tab_map = NULL;
-	map->map_width = 0;
-	map->map_height = 0;
+	map->col_map = 0;
+	map->line_map = 0;
 	map->col_player = 0;
 	map->line_player = 0;
 	map->col_exit = 0;

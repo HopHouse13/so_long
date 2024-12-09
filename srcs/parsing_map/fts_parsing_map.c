@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 02:13:57 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/09 00:41:34 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/09 01:40:33 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	ft_rectangular(t_game *map)
 			return (1);
 		i++; // nb de ligne dans le fichier
 	}
-	map->map_width = ft_strlen(map->tab_map[0]) - 1; // -1 car strlen compte le '\0' et je veux avoir uniquement le format de la map. 
-	map->map_height = i; // inialisation du format de la map dans la variable "map"
+	map->col_map = ft_strlen(map->tab_map[0]) - 1; // -1 car strlen compte le '\0' et je veux avoir uniquement le format de la map. 
+	map->line_map = i; // inialisation du format de la map dans la variable "map"
 	return (0);
 }
 
