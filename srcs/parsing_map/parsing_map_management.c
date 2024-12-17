@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:10:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/09 16:23:12 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/11 14:48:10 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 	7 -> map non entouree de mur
 	8 -> manque le player (P)
 	9 -> manque la sortie (E)
-	10 -> manque un collectible (C) */
+	10 -> manque un collectible (C) 
+	11 -> autre caractere que les caracteres autorises */
 
 	// faire un double tableau avec les lignes et collones puis l'envoyer 
 	// aux fonctions de check
@@ -41,9 +42,8 @@ int	ft_map_parsing_manag(char *file, t_game *map)
 		code_error = 9;
 	else if (ft_collectible_exists(map) != 0)
 		code_error = 10;
-	/* printf(">>>>>[%d]\n", ft_other_elem(map));
 	else if (ft_other_elem(map) != 0)
-		code_error = 11; */
+		code_error = 11;
 	if (code_error != 0)
 	{
 		ft_error_messages_file_and_map(code_error);

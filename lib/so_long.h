@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/09 16:15:42 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/17 14:34:33 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <stdlib.h> // malloc
 # include <stdio.h> // printf -> A SUPP
 
+# include <mlx.h> // minilibx
+# include <X11/keysym.h>
+
 # define RESET "\033[0m"
 # define BLACK "\033[30m"
 # define RED "\033[31m"
@@ -29,6 +32,17 @@
 # define MAGENTA "\033[35m"
 # define CYAN "\033[36m"
 # define WHITE "\033[37m"
+
+# define WINDOW_WIDTH 600
+# define WINDOW_HEIGHT 300
+
+typedef struct	s_graph
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+}				t_graph;
+
+
 
 typedef struct		s_game
 {
@@ -78,6 +92,11 @@ void	ft_initialisation_struct_ff(t_game *map);
 char	**ft_make_ff_map(t_game *map);
 int		ft_flood_fill(t_game *map, int x, int y);
 
+// so_long
+
+int		ft_so_long();
+
+
 
 // fonction de la gestion des messages d'erreurs
 
@@ -98,5 +117,13 @@ void	ft_free_double_tab(char **map);
 char	*get_next_line(int fd);
 char	*ft_before_line_break(char *str);
 char	*ft_after_line_break(char *str);
+
+// gnl_test_A_SUPPRIMER
+
+// char	*get_line_fd(int fd, char *line);
+// char	*read_until_n(int fd, char *line, char *buffer, int bytes_red);
+// char	*clean_line(char *line);
+// char	*get_remainder(char *line);
+// char	*ft_substr(char const *s_src, int start, int len);
 
 #endif
