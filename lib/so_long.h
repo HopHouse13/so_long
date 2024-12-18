@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/18 01:26:37 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/18 23:56:36 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ typedef struct	s_img
 	int			h;
 }				t_img;
 
+typedef struct s_player
+{
+	long int		x;
+	long int		y;
+	long int		movements;
+	t_img			player;
+}	t_player;
+
 typedef struct	s_graph
 {
 	void		*mlx_ptr;
@@ -47,11 +55,16 @@ typedef struct	s_graph
 	int			win_l;
 	int			win_h;
 	t_img		wall;
+	t_img		floor;
+	t_img		c;
+	t_img		e;
+	t_img		p_loose;
+	t_img		p_win;
 }				t_graph;
 
-typedef struct		s_game
+typedef struct		s_map
 {
-	struct s_game	*ff; // copie de la map pour le ff
+	struct s_map	*ff; // copie de la map pour le ff
 	char 			**tab_map; // original_map
 	int				col_map; // largeur de la map
 	int				line_map; // hauteur de la map
@@ -61,7 +74,15 @@ typedef struct		s_game
 	int				line_exit;
 	int				exit_counter; // compteur de d'exit
 	int				collectible_counter; // compteur de collectibles
+}					t_map;
+
+typedef struct		s_game
+{
+	t_map			map;
+	t_player		player;
+	t_graph			graph;
 }					t_game;
+
 
 // Fonctions du parsing du fichier
 
@@ -100,6 +121,8 @@ int		ft_flood_fill(t_game *map, int x, int y);
 // so_long
 
 int		ft_so_long();
+int		ft_itialisation_img(t_game *game);
+
 
 
 // fonction de la gestion des messages d'erreurs

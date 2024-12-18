@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:10:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/11 14:48:10 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/18 23:44:11 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,33 @@
 	// faire un double tableau avec les lignes et collones puis l'envoyer 
 	// aux fonctions de check
 
-int	ft_map_parsing_manag(char *file, t_game *map)
+int	ft_map_parsing_manag(char *file, t_game *game)
 {
 	int		code_error;
 	
-	ft_initialisation_struct_map(map);
-	ft_make_tab_map(file, map);
+	ft_initialisation_struct_map(game);
+	ft_make_tab_map(file, game);
 	/* int i=-1;
 	while (map->tab_map[++i])
 		printf("%s", map->tab_map[i]); */
 	code_error = 0;
-	if (ft_rectangular(map) != 0)
+	if (ft_rectangular(game) != 0)
 		code_error = 6;
-	else if (ft_surrounded_by_walls(map) != 0)
+	else if (ft_surrounded_by_walls(game) != 0)
 		code_error = 7;
-	else if (ft_player_exists(map) != 0)
+	else if (ft_player_exists(game) != 0)
 		code_error = 8;
-	else if (ft_exit_exists(map) != 0)
+	else if (ft_exit_exists(game) != 0)
 		code_error = 9;
-	else if (ft_collectible_exists(map) != 0)
+	else if (ft_collectible_exists(game) != 0)
 		code_error = 10;
-	else if (ft_other_elem(map) != 0)
+	else if (ft_other_elem(game) != 0)
 		code_error = 11;
 	if (code_error != 0)
 	{
 		ft_error_messages_file_and_map(code_error);
-		ft_free_double_tab(map->tab_map);
-		free(map);
+		ft_free_double_tab(game->map.tab_map);
+		free(game);
 		return (0);
 	}
 	return (1);

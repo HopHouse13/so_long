@@ -6,28 +6,28 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 18:26:53 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/11 14:48:50 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/18 23:42:21 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/so_long.h"
 
-void	ft_initialisation_struct_map(t_game *map)
+void	ft_initialisation_struct_map(t_game *game)
 {
-	map->ff = NULL;
-	map->tab_map = NULL;
-	map->col_map = 0;
-	map->line_map = 0;
-	map->col_player = 0;
-	map->line_player = 0;
-	map->col_exit = 0;
-	map->line_exit = 0;
-	map->exit_counter = 0;
-	map->collectible_counter = 0;
+	game->map.ff = NULL;
+	game->map.tab_map = NULL;
+	game->map.col_map = 0;
+	game->map.line_map = 0;
+	game->map.col_player = 0;
+	game->map.line_player = 0;
+	game->map.col_exit = 0;
+	game->map.line_exit = 0;
+	game->map.exit_counter = 0;
+	game->map.collectible_counter = 0;
 	return ;
 }
 
-void	ft_make_tab_map(char *file, t_game *map)
+void	ft_make_tab_map(char *file, t_game *game)
 {
 	int		i;
 	char	*line;
@@ -35,23 +35,23 @@ void	ft_make_tab_map(char *file, t_game *map)
 	int		nb_line;
 
 	nb_line = ft_line_counter(file);
-	map->tab_map = malloc((nb_line + 1) * sizeof(char *));
-	if (!map->tab_map)
+	game->map.tab_map = malloc((nb_line + 1) * sizeof(char *));
+	if (!game->map.tab_map)
 		return ;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_free_double_tab(map->tab_map);
+		ft_free_double_tab(game->map.tab_map);
 		return ;
 	}
 	i = -1; // pour gagner des lignes
 	while (++i < nb_line)
 	{
 		line = get_next_line(fd);
-		map->tab_map[i] = ft_strdup(line);
+		game->map.tab_map[i] = ft_strdup(line);
 		free(line);
 	}
-	map->tab_map[i] = NULL;
+	game->map.tab_map[i] = NULL;
 	close(fd);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:29:05 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/17 23:38:23 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/19 00:00:12 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@
 // les pointeurs a l'interieur avant? ou useless?
 int	main(int ac, char **av)
 {
-	t_game	*map;
+	t_game	*game;
 	
 	if (ac == 2)
 	{
 		if (ft_file_parsing_manag(av[1])) // fichier valide
 		{
-			map = malloc(sizeof(t_game));
-			if (map && ft_map_parsing_manag(av[1], map)) // map valide
-				if (ft_flood_fill_manag(map)) // jouabilite valide
+			game = malloc(sizeof(t_game));
+			if (game && ft_map_parsing_manag(av[1], game)) // map valide
+				if (ft_flood_fill_manag(game)) // jouabilite valide
 				{
 					printf(CYAN"[parsing & flood fill -> OK]\n"RESET);
-					ft_so_long();
-					ft_free_double_tab(map->ff->tab_map);
-					free(map->ff);
-					ft_free_double_tab(map->tab_map);
-					free(map);
+					ft_so_long(game);
+					ft_free_double_tab(game->map.ff->tab_map);
+					free(game->map.ff);
+					ft_free_double_tab(game->map.tab_map);
+					free(game);
 					return (0);
 				}
 		}
