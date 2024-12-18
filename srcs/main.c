@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:29:05 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/17 14:34:57 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/17 23:38:23 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int ac, char **av)
 				if (ft_flood_fill_manag(map)) // jouabilite valide
 				{
 					printf(CYAN"[parsing & flood fill -> OK]\n"RESET);
-					//ft_so_long();
+					ft_so_long();
 					ft_free_double_tab(map->ff->tab_map);
 					free(map->ff);
 					ft_free_double_tab(map->tab_map);

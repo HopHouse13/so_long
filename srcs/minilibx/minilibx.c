@@ -6,23 +6,27 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:59:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/17 14:34:24 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/18 01:53:52 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../lib/so_long.h"
+#include "../lib/so_long.h"
 
-// int	ft_so_long()
-// {
-// 	t_graph	*mlx;
+int	ft_so_long()
+{
+	t_graph	*mlx;
 	
-// // apres le malloc faut-il initialiser chaque valeur de la struct mlx?
-// 	mlx = malloc(sizeof (t_graph));
-// 	mlx->mlx_ptr = mlx_init();
-// 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, 1920, 1080, "Hello So_long");
-// 	mlx_loop(mlx->mlx_ptr);
-// 	return (0);
-// }
+	mlx = malloc(sizeof (t_graph));
+	mlx->win_l = 1920;
+	mlx->win_h = 1080;
+	mlx->mlx_ptr = mlx_init();
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, mlx->win_l, mlx->win_h, "Hello So_long");
+	mlx->wall.img = mlx_xpm_file_to_image(mlx->mlx_ptr, "./sprites/wall.xpm", &mlx->wall.l, &mlx->wall.h);
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->wall.img, 100, 100);
+	mlx_loop(mlx->mlx_ptr);
+	
+	return (0);
+}
 
 
 
@@ -35,7 +39,7 @@
 	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
 		return (1);
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "so_long's window!");
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WINDOW_LARGEUR, WINDOW_HAUTEUR, "so_long's window!");
 	if (!mlx->win_ptr)
 	{
 		free(mlx->win_ptr); // pas sur de tout ca 

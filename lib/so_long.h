@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/17 14:34:33 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/18 01:26:37 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,21 @@
 # define CYAN "\033[36m"
 # define WHITE "\033[37m"
 
-# define WINDOW_WIDTH 600
-# define WINDOW_HEIGHT 300
+typedef struct	s_img
+{
+	void		*img; // ptr de l'image cree
+	int			l;
+	int			h;
+}				t_img;
 
 typedef struct	s_graph
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
+	int			win_l;
+	int			win_h;
+	t_img		wall;
 }				t_graph;
-
-
 
 typedef struct		s_game
 {
@@ -95,7 +100,6 @@ int		ft_flood_fill(t_game *map, int x, int y);
 // so_long
 
 int		ft_so_long();
-
 
 
 // fonction de la gestion des messages d'erreurs
