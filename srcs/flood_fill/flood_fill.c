@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 23:32:10 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/18 23:50:36 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/19 14:38:35 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,38 @@
 		map.ff->tab_map[line][col + 1] == '1' &&  map.ff->tab_map[line][col - 1] == '1')
 		return (0);
 	else  */
-int	ft_flood_fill(t_game *game, int line, int col)
+int	ft_flood_fill(t_game *game, t_map map_ff, int line, int col)
 {
-	if (game->map.ff->collectible_counter == 0 && game->map.ff->exit_counter == 0)
+	if (map_ff.collectible_counter == 0 && map_ff.exit_counter == 0)
 		return (0);
-	if (game->map.ff->tab_map[line][col] == 'C')
-		game->map.ff->collectible_counter--;
-	if (game->map.ff->tab_map[line][col] == 'E')
-		game->map.ff->exit_counter--;
-	game->map.ff->tab_map[line][col] = '1';
-	if (game->map.ff->tab_map[line + 1][col] != '1')
-		ft_flood_fill(game, line + 1, col);
-	if (game->map.ff->tab_map[line - 1][col] != '1')
-		ft_flood_fill(game, line - 1, col);
-	if (game->map.ff->tab_map[line][col + 1] != '1')
-		ft_flood_fill(game, line, col + 1);
-	if (game->map.ff->tab_map[line][col - 1] != '1')
-		ft_flood_fill(game, line, col - 1);
+	if (map_ff.tab_map[line][col] == 'C')
+		map_ff.collectible_counter--;
+	if (map_ff.tab_map[line][col] == 'E')
+		map_ff.exit_counter--;
+	map_ff.tab_map[line][col] = '1';
+	if (map_ff.tab_map[line + 1][col] != '1')
+		ft_flood_fill(game, map_ff, line + 1, col);
+	if (map_ff.tab_map[line - 1][col] != '1')
+		ft_flood_fill(game, map_ff, line - 1, col);
+	if (map_ff.tab_map[line][col + 1] != '1')
+		ft_flood_fill(game, map_ff, line, col + 1);
+	if (map_ff.tab_map[line][col - 1] != '1')
+		ft_flood_fill(game, map_ff, line, col - 1);
 	return (0);
 }
 
-void	ft_initialisation_struct_ff(t_game *game)
+t_map	ft_initialisation_struct_ff(t_game *game, t_map map_ff)
 {
-	game->map.ff->tab_map = ft_make_ff_map(game);
-	game->map.ff->col_map = game->map.col_map;
-	game->map.ff->line_map = game->map.line_map;
-	game->map.ff->col_player = game->map.col_player;
-	game->map.ff->line_player = game->map.line_player;
-	game->map.ff->col_exit = game->map.col_exit;
-	game->map.ff->line_exit = game->map.line_exit;
-	game->map.ff->exit_counter = game->map.exit_counter;
-	game->map.ff->collectible_counter = game->map.collectible_counter;
+	map_ff.tab_map = ft_make_ff_map(game);
+	map_ff.col_map = game->map.col_map;
+	map_ff.line_map = game->map.line_map;
+	map_ff.col_player = game->map.col_player;
+	map_ff.line_player = game->map.line_player;
+	map_ff.col_exit = game->map.col_exit;
+	map_ff.line_exit = game->map.line_exit;
+	map_ff.exit_counter = game->map.exit_counter;
+	map_ff.collectible_counter = game->map.collectible_counter;
+	return (map_ff);
 }
 
 char	**ft_make_ff_map(t_game *game)

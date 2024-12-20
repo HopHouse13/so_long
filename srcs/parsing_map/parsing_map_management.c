@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:10:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/18 23:44:11 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/19 14:10:13 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ int	ft_map_parsing_manag(char *file, t_game *game)
 	
 	ft_initialisation_struct_map(game);
 	ft_make_tab_map(file, game);
-	/* int i=-1;
-	while (map->tab_map[++i])
-		printf("%s", map->tab_map[i]); */
 	code_error = 0;
 	if (ft_rectangular(game) != 0)
 		code_error = 6;
@@ -47,9 +44,11 @@ int	ft_map_parsing_manag(char *file, t_game *game)
 	if (code_error != 0)
 	{
 		ft_error_messages_file_and_map(code_error);
-		ft_free_double_tab(game->map.tab_map);
-		free(game);
+		ft_free(game);
+		/* ft_free_double_tab(game->map.tab_map);
+		free(game); */
 		return (0);
 	}
+	ft_free(game);
 	return (1);
 }

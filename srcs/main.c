@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:29:05 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/19 00:00:12 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/20 10:26:40 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,11 @@ int	main(int ac, char **av)
 				{
 					printf(CYAN"[parsing & flood fill -> OK]\n"RESET);
 					ft_so_long(game);
-					ft_free_double_tab(game->map.ff->tab_map);
-					free(game->map.ff);
-					ft_free_double_tab(game->map.tab_map);
-					free(game);
+					ft_free(game);
 					return (0);
 				}
 		}
+		free(game);
 		return (1);
 	}
 	else

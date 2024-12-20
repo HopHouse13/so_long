@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 18:02:13 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/09 16:16:03 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/19 04:49:13 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_error_messages_file_and_map(int code_error)
 	else if (code_error == 5)
 		write(2, RED"Error\nFichier vide.\n"RESET, 30);
 	else if (code_error == 6)
-		write(2, RED"Error\nMap non rectangulaire.\n"RESET, 39);
+		write(2, RED"Error\nMap non rectangulaire en un seul bloc.\n"RESET, 55);
 	else if (code_error == 7)
 		write(2, RED"Error\nMap non encadrée par des murs.\n"RESET, 47);
 	else if (code_error == 8)

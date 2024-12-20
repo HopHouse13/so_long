@@ -6,6 +6,10 @@
 	"files.associations": {
 		"so_long.h": "c",
 		"type_traits": "c",
-		"fcntl.h": "c"
+		"fcntl.h": "c",
+		"array": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"utility": "c"
 	}
 }

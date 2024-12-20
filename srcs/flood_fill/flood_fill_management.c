@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 21:14:23 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/18 23:51:30 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/19 14:39:06 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,24 @@
 
 int	ft_flood_fill_manag(t_game *game)
 {
-	game->map.ff = malloc(sizeof(t_map));
-	if (!game->map.ff)
-		return (0);
-	ft_initialisation_struct_ff(game);
-	ft_flood_fill(game, game->map.ff->line_player, game->map.ff->col_player);
-	if (game->map.ff->collectible_counter != 0 || game->map.ff->exit_counter != 0)
+	t_map	map_ff;
+	
+	// map_ff = malloc(sizeof(t_map));
+	// if (map_ff)
+	// 	return (0);
+	map_ff = ft_initialisation_struct_ff(game, map_ff);
+	ft_flood_fill(game, map_ff, map_ff.line_player, map_ff.col_player);
+	if (map_ff.collectible_counter != 0 || map_ff.exit_counter != 0)
 	{
-		if (game->map.ff->collectible_counter != 0)
+		if (map_ff.collectible_counter != 0)
 			ft_error_messages_ff(1);
-		if (game->map.ff->exit_counter != 0)
+		if (map_ff.exit_counter != 0)
 			ft_error_messages_ff(2);
-		ft_free_double_tab(game->map.ff->tab_map);
+		ft_free(game);
+		/* ft_free_double_tab(map_ff.tab_map);
 		free(game->map.ff);
 		ft_free_double_tab(game->map.tab_map);
-		free(game);
+		free(game); */
 		return (0);
 	}
 	return (1);

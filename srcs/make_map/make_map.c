@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 18:26:53 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/18 23:42:21 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/20 10:25:01 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_initialisation_struct_map(t_game *game)
 {
-	game->map.ff = NULL;
 	game->map.tab_map = NULL;
 	game->map.col_map = 0;
 	game->map.line_map = 0;
@@ -41,7 +40,7 @@ void	ft_make_tab_map(char *file, t_game *game)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_free_double_tab(game->map.tab_map);
+		ft_free(game);
 		return ;
 	}
 	i = -1; // pour gagner des lignes

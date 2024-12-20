@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 00:47:22 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/09 00:47:47 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/19 14:41:11 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // fonction fonctionnelle (n'est plus a verifier)
 // n'est pas utilisee pour le moment
-int	ft_line_character_counter(char *file)
+/* int	ft_line_character_counter(char *file)
 {
 	int		number_character;
 	char	*one_line;
@@ -36,4 +36,17 @@ int	ft_line_character_counter(char *file)
 	free(one_line);
 	close(fd);
 	return (number_character);
+} */
+
+void	ft_free(t_game *game)
+{
+	int	i;
+
+	i = -1;
+	if (game->map.tab_map != NULL)
+	{
+		while (game->map.tab_map[++i] != NULL)
+			free(game->map.tab_map[i]);
+		free(game->map.tab_map);
+	}
 }

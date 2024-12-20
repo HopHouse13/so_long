@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/18 23:56:36 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/19 14:38:42 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define MAGENTA "\033[35m"
 # define CYAN "\033[36m"
 # define WHITE "\033[37m"
+
+# define ELEM_SIZE 64
 
 typedef struct	s_img
 {
@@ -64,7 +66,7 @@ typedef struct	s_graph
 
 typedef struct		s_map
 {
-	struct s_map	*ff; // copie de la map pour le ff
+	//struct s_map	*ff; // copie de la map pour le ff
 	char 			**tab_map; // original_map
 	int				col_map; // largeur de la map
 	int				line_map; // hauteur de la map
@@ -114,14 +116,16 @@ char	*ft_strdup(const char *s_src);
 // Flood_fill
 
 int		ft_flood_fill_manag(t_game *map);
-void	ft_initialisation_struct_ff(t_game *map);
+t_map	ft_initialisation_struct_ff(t_game *map, t_map map_ff);
 char	**ft_make_ff_map(t_game *map);
-int		ft_flood_fill(t_game *map, int x, int y);
+int		ft_flood_fill(t_game *map, t_map map_ff, int x, int y);
 
 // so_long
 
-int		ft_so_long();
+int		ft_so_long(t_game *game);
 int		ft_itialisation_img(t_game *game);
+void	ft_get_map(t_game *game, int i,int j);
+
 
 
 
@@ -136,7 +140,8 @@ int		ft_strlen(const char *s);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strjoin(char *str, char *buffer);
-void	ft_free_double_tab(char **map);
+// void	ft_free_double_tab(char **map);
+void	ft_free(t_game *game);
 // int		ft_line_character_counter(char *file);
 
 // gnl

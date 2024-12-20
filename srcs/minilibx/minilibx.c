@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:59:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/18 23:59:08 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/19 12:27:47 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,49 @@
 
 int	ft_so_long(t_game *game)
 {
-	game->graph.win_l = 1920;
-	game->graph.win_h = 1080;
+	game->graph.win_l = ELEM_SIZE * game->map.col_map;
+	game->graph.win_h = ELEM_SIZE * game->map.line_map;
 	game->graph.mlx_ptr = mlx_init();
 	game->graph.win_ptr = mlx_new_window(game->graph.mlx_ptr, game->graph.win_l, game->graph.win_h, "Hello So_long");
 	if (ft_itialisation_img(game) == 1)
 		return (1);
-	mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.floor.img, 0, 0);
+	int i = 0;
+	int j = 0;
+	while (game->map.tab_map[i])
+	{
+		j = 0;
+		while (game->map.tab_map[i][j])
+		{
+			ft_get_map(game, i, j);
+			j++;
+		}
+		i++;	
+	}
+	/* mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.floor.img, 0, 0);
 	mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.wall.img, 64, 0);
 	mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.p_loose.img, 0, 64);
 	mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.c.img, 128, 0);
 	mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.e.img, 0, 128);
-	mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.p_win.img, 64, 64);
+	mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.p_win.img, 64, 64); */
 	mlx_loop(game->graph.mlx_ptr);
 	return (0);
 }
+	void	ft_get_map(t_game *game, int i, int j)
+	{printf("%c",game->map.tab_map[i][j]);
+		if ((game->map.tab_map)[i][j] == '1')
+			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.wall.img, ELEM_SIZE*j, ELEM_SIZE*i);
+		if (game->map.tab_map[i][j] == '0')
+			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.floor.img, ELEM_SIZE*j, ELEM_SIZE*i);	
+		if (game->map.tab_map[i][j] == 'C')
+			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.c.img, ELEM_SIZE*j, ELEM_SIZE*i);	
+		if (game->map.tab_map[i][j] == 'P')
+			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.p_loose.img, ELEM_SIZE*j, ELEM_SIZE*i);
+		if (game->map.tab_map[i][j] == 'E')
+			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.e.img, ELEM_SIZE*j, ELEM_SIZE*i);
+		/* if (game->map.tab_map[i][j] = '1')
+			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.wall.img, 64*j, 64*i); */
+	}
+
 
 int	ft_itialisation_img(t_game *game)
 {
