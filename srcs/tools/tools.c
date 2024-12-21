@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:53:58 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/09 00:48:53 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/20 19:52:53 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,9 @@ void	ft_free_double_tab(char **map)
 {
 	int	i;
 
-	i = 0;
-	if (map)
-	{
-		while (map[i] != NULL)
-		{
-			free(map[i]);
-			i++;
-		}
-		free(map);
-	}
+	i = -1;
+	while (map[++i] != NULL)
+		free(map[i]);
+	free(map);
+
 }

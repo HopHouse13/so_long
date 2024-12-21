@@ -6,20 +6,22 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:59:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/19 12:27:47 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/21 00:12:31 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/so_long.h"
 
-int	ft_so_long(t_game *game)
+int		ft_so_long(t_game *game)
 {
 	game->graph.win_l = ELEM_SIZE * game->map.col_map;
 	game->graph.win_h = ELEM_SIZE * game->map.line_map;
 	game->graph.mlx_ptr = mlx_init();
 	game->graph.win_ptr = mlx_new_window(game->graph.mlx_ptr, game->graph.win_l, game->graph.win_h, "Hello So_long");
 	if (ft_itialisation_img(game) == 1)
+	{
 		return (1);
+	}
 	int i = 0;
 	int j = 0;
 	while (game->map.tab_map[i])
@@ -32,17 +34,11 @@ int	ft_so_long(t_game *game)
 		}
 		i++;	
 	}
-	/* mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.floor.img, 0, 0);
-	mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.wall.img, 64, 0);
-	mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.p_loose.img, 0, 64);
-	mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.c.img, 128, 0);
-	mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.e.img, 0, 128);
-	mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.p_win.img, 64, 64); */
 	mlx_loop(game->graph.mlx_ptr);
 	return (0);
 }
 	void	ft_get_map(t_game *game, int i, int j)
-	{printf("%c",game->map.tab_map[i][j]);
+	{
 		if ((game->map.tab_map)[i][j] == '1')
 			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.wall.img, ELEM_SIZE*j, ELEM_SIZE*i);
 		if (game->map.tab_map[i][j] == '0')
@@ -51,10 +47,12 @@ int	ft_so_long(t_game *game)
 			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.c.img, ELEM_SIZE*j, ELEM_SIZE*i);	
 		if (game->map.tab_map[i][j] == 'P')
 			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.p_loose.img, ELEM_SIZE*j, ELEM_SIZE*i);
+/* 		if (game->map.tab_map[i][j] == 'P')
+			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.p_win.img, ELEM_SIZE*j, ELEM_SIZE*i); */
 		if (game->map.tab_map[i][j] == 'E')
-			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.e.img, ELEM_SIZE*j, ELEM_SIZE*i);
-		/* if (game->map.tab_map[i][j] = '1')
-			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.wall.img, 64*j, 64*i); */
+			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.e_close.img, ELEM_SIZE*j, ELEM_SIZE*i);
+/* 		if (game->map.tab_map[i][j] == 'E')
+			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.e_open.img, ELEM_SIZE*j, ELEM_SIZE*i); */
 	}
 
 
@@ -69,14 +67,18 @@ int	ft_itialisation_img(t_game *game)
 	game->graph.c.img = mlx_xpm_file_to_image(game->graph.mlx_ptr, "./sprites/c.xpm", &game->graph.c.l, &game->graph.c.h);
 	if (!game->graph.c.img)
 		return (1);
-	game->graph.e.img = mlx_xpm_file_to_image(game->graph.mlx_ptr, "./sprites/e.xpm", &game->graph.e.l, &game->graph.e.h);
-	if (!game->graph.e.img)
+	printf("test\n");
+	game->graph.e_close.img = mlx_xpm_file_to_image(game->graph.mlx_ptr, "./sprites/e_close.xpm", &game->graph.e_close.l, &game->graph.e_close.h);
+	if (!game->graph.e_close.img)
 		return (1);
 	game->graph.p_loose.img = mlx_xpm_file_to_image(game->graph.mlx_ptr, "./sprites/p_loose.xpm", &game->graph.p_loose.l, &game->graph.p_loose.h);
 	if (!game->graph.p_loose.img)
 		return (1);
 	game->graph.p_win.img = mlx_xpm_file_to_image(game->graph.mlx_ptr, "./sprites/p_win.xpm", &game->graph.p_win.l, &game->graph.p_win.h);
-	if (!game->graph.p_win.img)
+	if (!game->graph.p_win.img)	
+		return (1);
+	game->graph.e_open.img = mlx_xpm_file_to_image(game->graph.mlx_ptr, "./sprites/e_open.xpm", &game->graph.e_open.l, &game->graph.e_open.h);
+	if (!game->graph.e_open.img)
 		return (1);
 	return (0);
 }
