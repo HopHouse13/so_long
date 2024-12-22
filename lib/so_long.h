@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/21 00:03:56 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/22 20:45:07 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef struct	s_img
 
 typedef struct s_player
 {
-	long int		x;
-	long int		y;
+	long int		x_player;
+	long int		y_player;
 	long int		movements;
 	t_img			player;
 }	t_player;
@@ -54,8 +54,6 @@ typedef struct	s_graph
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	int			win_l;
-	int			win_h;
 	t_img		wall;
 	t_img		floor;
 	t_img		c;
@@ -71,10 +69,6 @@ typedef struct		s_map
 	char 			**tab_map; // original_map
 	int				col_map; // largeur de la map
 	int				line_map; // hauteur de la map
-	int				col_player;
-	int				line_player;
-	int				col_exit;
-	int				line_exit;
 	int				exit_counter; // compteur de d'exit
 	int				collectible_counter; // compteur de collectibles
 }					t_map;
@@ -125,10 +119,10 @@ int		ft_flood_fill(t_game *game, t_map *map_ff, int x, int y);
 
 int		ft_so_long(t_game *game);
 int		ft_itialisation_img(t_game *game);
-void	ft_get_map(t_game *game, int i,int j);
-
-
-
+int		ft_refresh_display(t_game *game);
+int		ft_display_map(t_game *game);
+void	ft_display_player(t_game *game);
+void	ft_display_elem(t_game *game, long int x, long int y);
 
 // fonction de la gestion des messages d'erreurs
 

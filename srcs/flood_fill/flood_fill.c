@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 23:32:10 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/20 20:54:44 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/23 00:54:18 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,6 @@ void	ft_initialisation_struct_ff(t_game *game, t_map *map_ff)
 	map_ff->tab_map = ft_make_ff_map(game);
 	map_ff->col_map = game->map.col_map;
 	map_ff->line_map = game->map.line_map;
-	map_ff->col_player = game->map.col_player;
-	map_ff->line_player = game->map.line_player;
-	map_ff->col_exit = game->map.col_exit;
-	map_ff->line_exit = game->map.line_exit;
 	map_ff->exit_counter = game->map.exit_counter;
 	map_ff->collectible_counter = game->map.collectible_counter;
 }

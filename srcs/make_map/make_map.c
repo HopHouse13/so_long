@@ -17,10 +17,6 @@ void	ft_initialisation_struct_map(t_game *game)
 	game->map.tab_map = NULL;
 	game->map.col_map = 0;
 	game->map.line_map = 0;
-	game->map.col_player = 0;
-	game->map.line_player = 0;
-	game->map.col_exit = 0;
-	game->map.line_exit = 0;
 	game->map.exit_counter = 0;
 	game->map.collectible_counter = 0;
 	return ;
@@ -39,10 +35,7 @@ void	ft_make_tab_map(char *file, t_game *game)
 		return ;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_free(game);
 		return ;
-	}
 	i = -1; // pour gagner des lignes
 	while (++i < nb_line)
 	{

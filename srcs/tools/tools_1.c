@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 00:47:22 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/20 16:58:45 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/22 15:58:12 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,8 @@ void	ft_free(t_game *game)
 {
 	int	i;
 
-	i = -1;
-	if (game->map.tab_map != NULL)
-	{
-		while (game->map.tab_map[++i] != NULL)
-			free(game->map.tab_map[i]);
-		free(game->map.tab_map);
-	}
+	i = game->map.line_map - 1; // car on parle d'indexe et pas de nombre de lignes, decale de 1.
+	while (i != -1)
+		free(game->map.tab_map[i--]);
+	free(game->map.tab_map);
 }

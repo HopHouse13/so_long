@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:29:05 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/20 20:56:27 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/22 18:20:14 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,13 @@ int	main(int ac, char **av)
 	
 	if (ac == 2)
 	{
-		if (ft_file_parsing_manag(av[1])) // fichier valide
+		if (ft_file_parsing_manag(av[1]) &&
+			ft_map_parsing_manag(av[1], &game) &&
+			ft_flood_fill_manag(&game) &&
+			ft_so_long(&game))
 		{
-			if (ft_map_parsing_manag(av[1], &game)) // map valide
-				if (ft_flood_fill_manag(&game)) // jouabilite valide
-				{
-					ft_so_long(&game);
-					return (0);
-					ft_free_double_tab(game.map.tab_map);
-				}
+			ft_free_double_tab(game.map.tab_map);
+			return (0);
 		}
 		ft_free_double_tab(game.map.tab_map);
 		return (1);

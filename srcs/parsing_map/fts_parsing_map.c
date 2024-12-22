@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 02:13:57 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/20 19:28:28 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/22 20:44:30 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	ft_player_exists(t_game *game)
 			if (game->map.tab_map[i][j] == 'P')
 			{
 				nb_of_player++;
-				game->map.col_player = j;
-				game->map.line_player = i;
+				game->player.x_player = j;
+				game->player.y_player = i;
 			}
 			j++;
 		}
@@ -100,8 +100,6 @@ int	ft_exit_exists(t_game *game)
 			if (game->map.tab_map[i][j] == 'E')
 			{
 				nb_of_exit++;
-				game->map.col_exit = j;
-				game->map.line_exit = i;
 				game->map.exit_counter++;
 			}
 			j++;
