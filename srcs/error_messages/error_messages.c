@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 18:02:13 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/19 04:49:13 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/24 19:05:30 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 	// 11 -> collectibles non accessibles
 	// 12 -> exit non accessible
 
-void	ft_error_messages_file_and_map(int code_error)
+int	ft_error_messages_file_and_map(int code_error)
 {
 	if (code_error == 1)
 		write(2, RED"Error\nL'argument d'entrée est un repertoire.\n"RESET, 55);
@@ -42,15 +42,18 @@ void	ft_error_messages_file_and_map(int code_error)
 	else if (code_error == 6)
 		write(2, RED"Error\nMap non rectangulaire en un seul bloc.\n"RESET, 55);
 	else if (code_error == 7)
-		write(2, RED"Error\nMap non encadrée par des murs.\n"RESET, 47);
+		write(2, RED"Error\nMap depasse le format d'ecran.\n"RESET, 47);
 	else if (code_error == 8)
-		write(2, RED"Error\nNombre de joueur non valide.\n"RESET, 45);
+		write(2, RED"Error\nMap non encadrée par des murs.\n"RESET, 47);
 	else if (code_error == 9)
-		write(2, RED"Error\nNombre de sortie non valide.\n"RESET, 45);
+		write(2, RED"Error\nNombre de joueur non valide.\n"RESET, 45);
 	else if (code_error == 10)
-		write(2, RED"Error\nAvec des collectables, c'est plus fun.\n"RESET, 55);
+		write(2, RED"Error\nNombre de sortie non valide.\n"RESET, 45);
 	else if (code_error == 11)
+		write(2, RED"Error\nAvec des collectables, c'est plus fun.\n"RESET, 55);
+	else if (code_error == 12)
 		write(2, RED"Error\nÉlément non autorisé.\n"RESET, 37);
+	return (0);
 }
 
 void	ft_error_messages_ff(int code_error)

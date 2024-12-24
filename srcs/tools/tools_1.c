@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 00:47:22 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/24 00:05:45 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/24 16:10:11 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,31 +65,34 @@ void	ft_initialisation_structs(t_game *game)
 	game->graph.c.img = NULL;
 	game->graph.e_open.img = NULL;
 	game->graph.e_close.img = NULL;
-	game->graph.p_loose.img = NULL;
-	game->graph.p_win.img = NULL;	
+	game->player.p_loose.img = NULL;
+	game->player.p_and_e.img = NULL;
 }
 void	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	write(1, &c	, 1);
 }
 
-void	ft_putnbr(long int nb)
+void	ft_putnbr_and_return_to_line(long int nb)
 {
-	char	resul[20]; // le max de chiffre dans une long int est 19 + '\0'
+	char	resul[21]; // le max de chiffre dans une long int est 19 + '\n' + '\0'
 	int		k;
 
 	if (nb == 0)
 	{
 		ft_putchar('0');
+		ft_putchar('\n');
 		return ;
 	}
-	k = 19;
-	resul[k] = '\0';
+	k = 20;
+	resul[k] = '\0'; // caractere de fin de chaine
+	k--;
+	resul[k] = '\n'; // retour a la ligne a chaque numero affiche
 	while (nb > 0)
 	{
 		resul[--k] = (nb % 10) + '0';
 		nb /= 10;
-	}
+	}	
 	while (resul[k])
 		ft_putchar(resul[k++]);
 }

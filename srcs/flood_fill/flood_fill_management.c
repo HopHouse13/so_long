@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 21:14:23 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/23 00:50:54 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/24 18:47:46 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ int	ft_flood_fill_manag(t_game *game)
 			ft_error_messages_ff(1);
 		if (map_ff.exit_counter != 0)
 			ft_error_messages_ff(2);
-		ft_free_double_tab(map_ff.tab_map);
 		return (0);
 	}
-	ft_free_double_tab(map_ff.tab_map);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:10:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/23 17:31:33 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/24 19:07:31 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,19 @@ int	ft_map_parsing_manag(char *file, t_game *game)
 	code_error = 0;
 	if (ft_rectangular(game) != 0)
 		code_error = 6;
-	else if (ft_surrounded_by_walls(game) != 0)
+	if (ft_out_of_screen_format(game) != 0)
 		code_error = 7;
-	else if (ft_player_exists(game) != 0)
+	else if (ft_surrounded_by_walls(game) != 0)
 		code_error = 8;
-	else if (ft_exit_exists(game) != 0)
+	else if (ft_player_exists(game) != 0)
 		code_error = 9;
-	else if (ft_collectible_exists(game) != 0)
+	else if (ft_exit_exists(game) != 0)
 		code_error = 10;
-	else if (ft_other_elem(game) != 0)
+	else if (ft_collectible_exists(game) != 0)
 		code_error = 11;
+	else if (ft_other_elem(game) != 0)
+		code_error = 12;
 	if (code_error != 0)
-	{
-		ft_error_messages_file_and_map(code_error);
-		ft_free_double_tab(game->map.tab_map);
-		return (0);
-	}
-
+		return (ft_error_messages_file_and_map(code_error));
 	return (1);
 }
