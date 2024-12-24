@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 02:13:57 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/22 20:44:30 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/23 17:12:51 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 // ok
 int	ft_rectangular(t_game *game)
 {
-	int	i;
-	int	nb_of_char;
+	long int	i;
+	int			nb_of_char;
 
 	i = 0;
 	nb_of_char = ft_strlen(game->map.tab_map[i]);

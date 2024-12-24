@@ -6,46 +6,14 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:59:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/23 00:46:46 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/24 01:04:25 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/so_long.h"
-// Plan
-// itialisation_struct_graph
-// itialisation_hooks_&_input
-//
-// int i = 0;
-	// int j = 0;
-	// while (game->map.tab_map[i])
-	// {
-	// 	j = 0;
-	// 	while (game->map.tab_map[i][j])
-	// 	{
-	// 		ft_put_image(game, i, j);
-	// 		j++;
-	// 	}
-	// 	i++;	
-	// }
 
-/* void	ft_put_image(t_game *game, int i, int j)
-	{
-		if ((game->map.tab_map)[i][j] == '1')
-			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.wall.img, ELEM_SIZE*j, ELEM_SIZE*i);
-		if (game->map.tab_map[i][j] == '0')
-			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.floor.img, ELEM_SIZE*j, ELEM_SIZE*i);	
-		if (game->map.tab_map[i][j] == 'C')
-			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.c.img, ELEM_SIZE*j, ELEM_SIZE*i);	
-		if (game->map.tab_map[i][j] == 'P')
-			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.p_loose.img, ELEM_SIZE*j, ELEM_SIZE*i);
-		if (game->map.tab_map[i][j] == 'P')
-			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.p_win.img, ELEM_SIZE*j, ELEM_SIZE*i);
-		if (game->map.tab_map[i][j] == 'E')
-			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.e_close.img, ELEM_SIZE*j, ELEM_SIZE*i);
-		if (game->map.tab_map[i][j] == 'E')
-			mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.e_open.img, ELEM_SIZE*j, ELEM_SIZE*i);
-	} */
-
+// loop_hook (need mlx_ptr)
+// hook (need win_ptr)
 int		ft_so_long(t_game *game)
 {
 	game->graph.mlx_ptr = mlx_init();
@@ -55,8 +23,10 @@ int		ft_so_long(t_game *game)
 	if (!game->graph.win_ptr)
 		return (0);
 	if (!ft_itialisation_img(game))
-		return (0);
+		return (0);	
 	mlx_loop_hook(game->graph.mlx_ptr, &ft_refresh_display, game);
+	mlx_hook(game->graph.win_ptr, KeyPress, KeyPressMask, &ft_input_management, game);
+	mlx_hook(game->graph.win_ptr, DestroyNotify, StructureNotifyMask, &ft_cross_management, game);
 	mlx_loop(game->graph.mlx_ptr);
 	return (0);
 }
@@ -90,11 +60,11 @@ int	ft_itialisation_img(t_game *game)
 }
 int	ft_refresh_display(t_game *game)
 {
-	if (game->graph.win_ptr /* && game->graph.render_again == 1 */) // secu si il  ya eu une probleme avec la window + flag pour eviter de refrensh a chaque fram alors aucun input a ete press
+	if (game->graph.win_ptr && game->graph.flag_refresh == 0) // secu, si il y a eu un probleme avec la window + flag pour eviter de refresh a chaque frame alors aucun input a ete press
 	{
 		if (!ft_display_map(game))
 			return (0);
-		// game->graph.render_again = 0; // pour signaler que ca ete mit a jour car le frag etait == 1, il passe a zero pour eviter les refrensh pour rien.
+		game->graph.flag_refresh = 1; // pour signaler que ca ete mis a jour car le frame etait == 1, il passe a zero pour eviter les refresh pour rien.
 	}
 	return (1);
 }
@@ -102,14 +72,17 @@ int	ft_display_map(t_game *game)
 {
 	long int	x;
 	long int	y;
+
 	y = 0;
-	while (game->map.tab_map[y])
+	while (y < game->map.line_map)
 	{
 		x = 0;
-		while (game->map.tab_map[y][x])
-		{//printf("y_player : %ld\nx_player : %ld\n y : %ld\n x : %ld\n", game->player.y, game->player.x, y, x);
+		while (x < game->map.col_map)
+		{//printf("\n y : [%ld]\tline : {%ld}\n x : [%ld]\tcol : {%ld}\n", y, game->map.line_map, x, game->map.col_map);
 			if (game->player.y_player == y && game->player.x_player == x)
+			{
 				ft_display_player(game);
+			}
 			else
 				ft_display_elem(game, x, y);
 			x++;
@@ -127,21 +100,74 @@ int	ft_display_map(t_game *game)
 void	ft_display_player(t_game *game)
 {
 	if (game->map.collectible_counter != 0)
-		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.p_loose.img, ELEM_SIZE * game->player.y_player, ELEM_SIZE * game->player.x_player);
+		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.p_loose.img, game->player.x_player * ELEM_SIZE, game->player.y_player * ELEM_SIZE);
 	else
-		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.p_win.img, ELEM_SIZE * game->player.y_player, ELEM_SIZE * game->player.x_player);
+		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.p_win.img, game->player.x_player * ELEM_SIZE, game->player.y_player * ELEM_SIZE);
 }
 
 void	ft_display_elem(t_game *game, long int x, long int y)
-{
-	if ((game->map.tab_map)[y][x] == '1')
-		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.wall.img, ELEM_SIZE * y, ELEM_SIZE * x);
-	else if (game->map.tab_map[y][x] == '0')
-		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.floor.img, ELEM_SIZE * y, ELEM_SIZE * x);	
-	else if (game->map.tab_map[y][x] == 'C')
-		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.c.img, ELEM_SIZE * y, ELEM_SIZE * x);	
-	if (game->map.tab_map[y][x] == 'E' && game->map.collectible_counter != 0)
-		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.e_close.img, ELEM_SIZE * y, ELEM_SIZE * x);
-	else
-		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.e_open.img, ELEM_SIZE * y, ELEM_SIZE * x);
+{ // printf("%c", (game->map.tab_map)[y][x]);
+	if ((game->map.tab_map)[y][x] == '1' && game->graph.wall.img)
+		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.wall.img, x * ELEM_SIZE, y * ELEM_SIZE);
+	else if (game->map.tab_map[y][x] == '0' && game->graph.floor.img) 
+		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.floor.img, x * ELEM_SIZE, y * ELEM_SIZE);	
+	else if (game->map.tab_map[y][x] == 'C' && game->graph.c.img)
+		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.c.img, x * ELEM_SIZE, y * ELEM_SIZE);	
+	else if (game->map.tab_map[y][x] == 'E' && game->map.collectible_counter != 0 && game->graph.e_close.img)
+		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.e_close.img, x * ELEM_SIZE, y * ELEM_SIZE);
+	else if (game->map.tab_map[y][x] == 'E' && game->map.collectible_counter == 0 && game->graph.e_open.img)
+		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.e_open.img, x * ELEM_SIZE, y * ELEM_SIZE);
 }
+int	ft_input_management(int keysym, t_game *game)
+{
+	if (game->graph.win_ptr)
+	{
+		if (keysym == XK_Escape) // bouton esc
+			mlx_loop_end(game->graph.mlx_ptr);
+		else
+			ft_movement_management(keysym, game);
+	}
+	return (0);
+}
+int	ft_movement_management(int keysym,t_game *game)
+{
+	if (keysym == XK_w && ft_movement_possible('^', game))
+		game->player.y_player -= 1;
+	else if (keysym == XK_s && ft_movement_possible('v', game))
+		game->player.y_player += 1;
+	else if (keysym == XK_a && ft_movement_possible('<', game))
+		game->player.x_player -= 1;
+	else if (keysym == XK_d && ft_movement_possible('>', game))
+		game->player.x_player += 1;
+	game->graph.flag_refresh = 0;
+	return (0);
+}
+int	ft_movement_possible(char direction, t_game *game)
+{//printf(">>>>>>>>>>>>>>>>> %c\n", game->map.tab_map[game->player.y_player - 1][game->player.x_player]);
+	if (direction == '^' && game->map.tab_map[game->player.y_player - 1][game->player.x_player] != 1 && game->player.y_player - 1 >= 0)
+		return(ft_print_movement_nb(game));
+	else if (direction == 'v' && game->map.tab_map[game->player.y_player + 1][game->player.x_player] != 1 && game->player.y_player + 1 < game->map.line_map)
+		return(ft_print_movement_nb(game));
+	else if (direction == '<' && game->map.tab_map[game->player.y_player][game->player.x_player - 1] != 1 && game->player.x_player - 1 >= 0)
+		return(ft_print_movement_nb(game));
+	else if (direction == '>' && game->map.tab_map[game->player.y_player][game->player.x_player + 1] != 1 && game->player.x_player + 1 < game->map.col_map)
+		return(ft_print_movement_nb(game));
+	return (0);
+}
+
+int	ft_print_movement_nb(t_game *game)
+{
+	game->player.movements++;
+	write (1, "move N.", 7);
+	ft_putnbr(game->player.movements);
+	write(1, "\n", 1);
+	return (1);
+}
+
+int	ft_cross_management(t_game *game)
+{
+	if (game->graph.win_ptr)
+		mlx_loop_end(game->graph.win_ptr);
+	return (0);
+}
+

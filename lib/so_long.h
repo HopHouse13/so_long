@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/22 20:45:07 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/24 01:04:40 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 
 # include "so_long.h"
 # include <unistd.h>
-# include <fcntl.h>
+# include <fcntl.h> // open
 # include <stdint.h>
 # include <stdlib.h> // malloc
 # include <stdio.h> // printf -> A SUPP
 
 # include <mlx.h> // minilibx
+# include <X11/X.h>
 # include <X11/keysym.h>
 
 # define RESET "\033[0m"
@@ -54,6 +55,7 @@ typedef struct	s_graph
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
+	int			flag_refresh;
 	t_img		wall;
 	t_img		floor;
 	t_img		c;
@@ -67,8 +69,8 @@ typedef struct		s_map
 {
 	//struct s_map	*ff; // copie de la map pour le ff
 	char 			**tab_map; // original_map
-	int				col_map; // largeur de la map
-	int				line_map; // hauteur de la map
+	long int		col_map; // largeur de la map
+	long int		line_map; // hauteur de la map
 	int				exit_counter; // compteur de d'exit
 	int				collectible_counter; // compteur de collectibles
 }					t_map;
@@ -103,7 +105,6 @@ int		ft_other_elem(t_game *game);
 
 // Fonctions creation de la map
 
-void	ft_initialisation_struct_map(t_game *game);
 void	ft_make_tab_map(char *file, t_game *game);
 int		ft_line_counter(char *file);
 char	*ft_strdup(const char *s_src);
@@ -123,6 +124,11 @@ int		ft_refresh_display(t_game *game);
 int		ft_display_map(t_game *game);
 void	ft_display_player(t_game *game);
 void	ft_display_elem(t_game *game, long int x, long int y);
+int		ft_input_management(int keysym, t_game *game);
+int		ft_movement_management(int keysym,t_game *game);
+int		ft_movement_possible(char direction, t_game *game);
+int		ft_print_movement_nb(t_game *game);
+int		ft_cross_management(t_game *game);
 
 // fonction de la gestion des messages d'erreurs
 
@@ -136,6 +142,11 @@ void	*ft_calloc(size_t count, size_t size);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strjoin(char *str, char *buffer);
 void	ft_free_double_tab(char **map);
+void	ft_initialisation_structs(t_game *game);
+void	ft_putchar(char c);
+void	ft_putnbr(long int nb);
+
+
 //void	ft_free(t_game *game);
 // int		ft_line_character_counter(char *file);
 

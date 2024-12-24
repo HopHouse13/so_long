@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 23:32:10 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/23 00:54:18 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/23 10:34:07 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	ft_initialisation_struct_ff(t_game *game, t_map *map_ff)
 
 char	**ft_make_ff_map(t_game *game)
 {
-	int		i;
-	char	**ff_map;
+	long int	i;
+	char		**ff_map;
 
 	ff_map = malloc((game->map.line_map + 1) * sizeof(char *));
 	if (!ff_map)

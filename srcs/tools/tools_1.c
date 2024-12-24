@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 00:47:22 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/22 15:58:12 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/24 00:05:45 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,56 @@
 
 void	ft_free(t_game *game)
 {
-	int	i;
+	long int	i;
 
 	i = game->map.line_map - 1; // car on parle d'indexe et pas de nombre de lignes, decale de 1.
 	while (i != -1)
 		free(game->map.tab_map[i--]);
 	free(game->map.tab_map);
+}
+void	ft_initialisation_structs(t_game *game)
+{	
+	game->map.tab_map = NULL;
+	game->map.col_map = 0;
+	game->map.line_map = 0;
+	game->map.exit_counter = 0;
+	game->map.collectible_counter = 0;
+	game->player.x_player = 0;
+	game->player.y_player = 0;
+	game->player.movements = 0;
+	game->graph.mlx_ptr = NULL;
+	game->graph.win_ptr = NULL;
+	game->graph.flag_refresh = 0;
+	game->graph.wall.img = NULL;
+	game->graph.floor.img = NULL;
+	game->graph.c.img = NULL;
+	game->graph.e_open.img = NULL;
+	game->graph.e_close.img = NULL;
+	game->graph.p_loose.img = NULL;
+	game->graph.p_win.img = NULL;	
+}
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putnbr(long int nb)
+{
+	char	resul[20]; // le max de chiffre dans une long int est 19 + '\0'
+	int		k;
+
+	if (nb == 0)
+	{
+		ft_putchar('0');
+		return ;
+	}
+	k = 19;
+	resul[k] = '\0';
+	while (nb > 0)
+	{
+		resul[--k] = (nb % 10) + '0';
+		nb /= 10;
+	}
+	while (resul[k])
+		ft_putchar(resul[k++]);
 }

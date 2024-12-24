@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:29:05 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/22 18:20:14 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/23 17:30:58 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av)
 	
 	if (ac == 2)
 	{
+		ft_initialisation_structs(&game);
 		if (ft_file_parsing_manag(av[1]) &&
 			ft_map_parsing_manag(av[1], &game) &&
 			ft_flood_fill_manag(&game) &&

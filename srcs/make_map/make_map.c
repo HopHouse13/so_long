@@ -12,16 +12,6 @@
 
 #include "../lib/so_long.h"
 
-void	ft_initialisation_struct_map(t_game *game)
-{	
-	game->map.tab_map = NULL;
-	game->map.col_map = 0;
-	game->map.line_map = 0;
-	game->map.exit_counter = 0;
-	game->map.collectible_counter = 0;
-	return ;
-}
-
 void	ft_make_tab_map(char *file, t_game *game)
 {
 	int		i;
