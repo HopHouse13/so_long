@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/24 19:16:31 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/26 19:07:47 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,11 @@ int		ft_flood_fill_manag(t_game *game);
 void	ft_initialisation_struct_ff(t_game *game, t_map *game_ff);
 char	**ft_make_ff_map(t_game *game);
 int		ft_flood_fill(t_game *game, t_map *map_ff, int x, int y);
+void	ft_free_ff_map(t_map *ff_map);
 
 // so_long
 
-int		ft_so_long(t_game *game);
+int		ft_game_start(t_game *game);
 int		ft_itialisation_img(t_game *game);
 int		ft_refresh_display(t_game *game);
 int		ft_display(t_game *game);
@@ -146,10 +147,11 @@ int		ft_strlen(const char *s);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strjoin(char *str, char *buffer);
-void	ft_free_double_tab(char **map);
+void	ft_free(t_game *game);
 void	ft_initialisation_structs(t_game *game);
 void	ft_putchar(char c);
 void	ft_putnbr_and_return_to_line(long int nb);
+void 	ft_free_img(t_game *game);
 
 //void	ft_free(t_game *game);
 // int		ft_line_character_counter(char *file);
@@ -162,10 +164,10 @@ char	*ft_after_line_break(char *str);
 
 // gnl_test_A_SUPPRIMER
 
-// char	*get_line_fd(int fd, char *line);
-// char	*read_until_n(int fd, char *line, char *buffer, int bytes_red);
-// char	*clean_line(char *line);
-// char	*get_remainder(char *line);
-// char	*ft_substr(char const *s_src, int start, int len);
+char	*get_line_fd(int fd, char *line);
+char	*read_until_n(int fd, char *line, char *buffer, int bytes_red);
+char	*clean_line(char *line);
+char	*get_remainder(char *line);
+char	*ft_substr(char const *s_src, int start, int len);
 
 #endif

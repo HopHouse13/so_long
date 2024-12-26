@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:53:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/11 14:54:59 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/26 19:58:07 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ char	*ft_after_line_break(char *str) // ma fonction de mon gnl
 	str = NULL;
 	return (dest);
 }
-// >>>>>>>>>> defference entre la mienne et celle de Paul --> la mienne 2 bytes encore dispo. Un seul pour celle de Paul
+
+//>>>>>>>>>> defference entre la mienne et celle de Paul --> la mienne 2 bytes encore dispo. Un seul pour celle de Paul
 
 // char	*ft_after_line_break(char *line) // fonction de Paul 
 // {
@@ -114,13 +115,13 @@ char	*make_line_brut(int fd, char *str)
 		if (!str)
 			return (NULL);
 	}
-	buffer = ft_calloc(64 + 1, sizeof(char));
+	buffer = ft_calloc(30 + 1, sizeof(char));
 	if (!buffer)
 		return (NULL);
 	nb_octets_read = 1;
 	while (nb_octets_read > 0 && !(ft_strchr(str, '\n')))
 	{
-		nb_octets_read = read(fd, buffer, 64);
+		nb_octets_read = read(fd, buffer, 30);
 		if (nb_octets_read == -1)
 			return (NULL);
 		if (nb_octets_read == 0)
@@ -147,6 +148,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	rest = make_line_brut(fd, rest);
+	//printf(">>>> %d\n", ft_strlen(rest));
 /* 	if (ft_strlen(rest) == 0)
 	{
 		free(rest);

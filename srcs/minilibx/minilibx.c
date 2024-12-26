@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:59:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/24 19:16:59 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/26 18:55:37 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // loop_hook (need mlx_ptr)
 // hook (need win_ptr)
-int		ft_so_long(t_game *game)
+int	ft_game_start(t_game *game)
 {
 	game->graph.mlx_ptr = mlx_init();
 	if (!game->graph.mlx_ptr)
@@ -28,7 +28,7 @@ int		ft_so_long(t_game *game)
 	mlx_hook(game->graph.win_ptr, KeyPress, KeyPressMask, &ft_input_management, game);
 	mlx_hook(game->graph.win_ptr, DestroyNotify, StructureNotifyMask, &ft_cross_management, game);
 	mlx_loop(game->graph.mlx_ptr);
-	return (0);
+	return (1);
 }
 	
 
@@ -80,11 +80,10 @@ int	ft_display(t_game *game)
 
 	y = 0;
 	while (y < game->map.line_map)
-	{printf("%s", game->map.tab_map[y]);
+	{
 		x = 0;
 		while (x < game->map.col_map)
 		{
-			//printf("\n y : [%ld]\tline : {%ld}\n x : [%ld]\tcol : {%ld}\n", y, game->map.line_map, x, game->map.col_map);
 			if (game->player.y_player == y && game->player.x_player == x)
 				ft_display_player(game);
 			else
@@ -113,7 +112,7 @@ void	ft_display_player(t_game *game)
 }
 
 void	ft_display_elem(t_game *game, long int x, long int y)
-{ // printf("%c", (game->map.tab_map)[y][x]);
+{
 	if ((game->map.tab_map)[y][x] == '1' && game->graph.wall.img)
 		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr, game->graph.wall.img, x * ELEM_SIZE, y * ELEM_SIZE);
 	else if (game->map.tab_map[y][x] == '0' && game->graph.floor.img) 
@@ -158,7 +157,7 @@ int	ft_movement_management(int keysym, t_game *game)
 // interdit au player de sortir des coordonnees de la map
 // (evite aussi les seg. fault)
 int	ft_movement_possible(char direction, t_game *game)
-{printf(">>>%ld\n", game->player.x_player + 1);
+{
 	if (direction == '^' && game->map.tab_map[game->player.y_player - 1][game->player.x_player] != '1' && game->player.y_player - 1 >= 0)
 		return(ft_print_movement_nb(game));
 	else if (direction == 'v' && game->map.tab_map[game->player.y_player + 1][game->player.x_player] != '1' && game->player.y_player + 1 < game->map.line_map)

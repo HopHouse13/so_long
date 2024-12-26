@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:29:05 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/23 17:30:58 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/26 20:12:30 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ int	main(int ac, char **av)
 		if (ft_file_parsing_manag(av[1]) &&
 			ft_map_parsing_manag(av[1], &game) &&
 			ft_flood_fill_manag(&game) &&
-			ft_so_long(&game))
+			ft_game_start(&game))
 		{
-			ft_free_double_tab(game.map.tab_map);
+			ft_free_img(&game);
+			ft_free(&game);
 			return (0);
 		}
-		ft_free_double_tab(game.map.tab_map);
+		ft_free_img(&game);
+		ft_free(&game);
 		return (1);
 	}
 	else

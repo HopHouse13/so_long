@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:53:58 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/20 19:52:53 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/26 18:48:58 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,27 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (dest);
 }
 
-void	ft_free_double_tab(char **map)
-{
-	int	i;
-
-	i = -1;
-	while (map[++i] != NULL)
-		free(map[i]);
-	free(map);
-
+void	ft_initialisation_structs(t_game *game)
+{	
+	game->map.tab_map = NULL;
+	game->map.col_map = 0;
+	game->map.line_map = 0;
+	game->map.exit_counter = 0;
+	game->map.collectible_counter = 0;
+	game->player.x_player = 0;
+	game->player.y_player = 0;
+	game->player.movements = 0;
+	game->player.p_loose.img = NULL;
+	game->player.p_win.img = NULL;
+	game->player.p_and_e.img = NULL;
+	game->graph.mlx_ptr = NULL;
+	game->graph.win_ptr = NULL;
+	game->graph.flag_refresh = 0;
+	game->graph.wall.img = NULL;
+	game->graph.floor.img = NULL;
+	game->graph.c.img = NULL;
+	game->graph.e_open.img = NULL;
+	game->graph.e_close.img = NULL;
+	game->player.p_loose.img = NULL;
+	game->player.p_and_e.img = NULL;
 }

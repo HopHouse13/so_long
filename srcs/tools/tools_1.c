@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 00:47:22 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/24 16:10:11 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/26 17:01:29 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,37 +37,46 @@
 	close(fd);
 	return (number_character);
 } */
-
+void ft_free_img(t_game *game)
+{
+	if(game->player.p_loose.img)
+		mlx_destroy_image(game->graph.mlx_ptr,game->player.p_loose.img);
+	if(game->player.p_win.img)
+		mlx_destroy_image(game->graph.mlx_ptr,game->player.p_win.img);
+	if(game->player.p_and_e.img)
+		mlx_destroy_image(game->graph.mlx_ptr,game->player.p_and_e.img);
+	if(game->graph.wall.img)
+		mlx_destroy_image(game->graph.mlx_ptr,game->graph.wall.img);
+	if(game->graph.floor.img)
+		mlx_destroy_image(game->graph.mlx_ptr,game->graph.floor.img);
+	if(game->graph.c.img)
+		mlx_destroy_image(game->graph.mlx_ptr,game->graph.c.img);
+	if(game->graph.e_open.img)
+		mlx_destroy_image(game->graph.mlx_ptr,game->graph.e_open.img);
+	if(game->graph.e_close.img)
+		mlx_destroy_image(game->graph.mlx_ptr,game->graph.e_close.img);
+}
 void	ft_free(t_game *game)
 {
 	long int	i;
 
 	i = game->map.line_map - 1; // car on parle d'indexe et pas de nombre de lignes, decale de 1.
-	while (i != -1)
+	while (i >= 0)
 		free(game->map.tab_map[i--]);
 	free(game->map.tab_map);
+	if (game->graph.win_ptr)
+	{
+		mlx_destroy_window(game->graph.mlx_ptr, game->graph.win_ptr);
+		game->graph.win_ptr = NULL;
+	}
+	if (game->graph.mlx_ptr)
+	{
+		mlx_destroy_display(game->graph.mlx_ptr);
+		free(game->graph.mlx_ptr);
+		game->graph.mlx_ptr = NULL;
+	}
 }
-void	ft_initialisation_structs(t_game *game)
-{	
-	game->map.tab_map = NULL;
-	game->map.col_map = 0;
-	game->map.line_map = 0;
-	game->map.exit_counter = 0;
-	game->map.collectible_counter = 0;
-	game->player.x_player = 0;
-	game->player.y_player = 0;
-	game->player.movements = 0;
-	game->graph.mlx_ptr = NULL;
-	game->graph.win_ptr = NULL;
-	game->graph.flag_refresh = 0;
-	game->graph.wall.img = NULL;
-	game->graph.floor.img = NULL;
-	game->graph.c.img = NULL;
-	game->graph.e_open.img = NULL;
-	game->graph.e_close.img = NULL;
-	game->player.p_loose.img = NULL;
-	game->player.p_and_e.img = NULL;
-}
+
 void	ft_putchar(char c)
 {
 	write(1, &c	, 1);

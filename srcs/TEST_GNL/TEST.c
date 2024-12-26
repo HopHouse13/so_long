@@ -1,5 +1,5 @@
 
- #include "../lib/so_long.h"
+//  #include "../lib/so_long.h"
 
 // char	*get_next_line(int fd)
 // {

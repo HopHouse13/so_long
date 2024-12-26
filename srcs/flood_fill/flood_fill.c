@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 23:32:10 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/23 10:34:07 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/26 18:55:17 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,17 @@ char	**ft_make_ff_map(t_game *game)
 		ff_map[i] = ft_strdup(game->map.tab_map[i]);
 	ff_map[i] = NULL;
 	return (ff_map);
+}
+
+void	ft_free_ff_map(t_map *ff_map)
+{
+	int	i;
+
+	i = -1;
+	if(ff_map->tab_map)
+	{
+		while (ff_map->tab_map[++i])
+		free(ff_map->tab_map[i]);
+	}
+	free(ff_map->tab_map);
 }

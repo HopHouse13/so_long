@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 02:13:57 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/24 19:25:11 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/26 18:55:44 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_rectangular(t_game *game)
 	return (0);
 }
 int ft_out_of_screen_format(t_game *game)
-{printf("[%ld]\n", game->map.col_map);
+{
 	if (game->map.col_map * ELEM_SIZE > SCREEN_LENGHT || game->map.line_map * ELEM_SIZE > SCREEN_WILTH)
 		return (1);
 	return (0);
