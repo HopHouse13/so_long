@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:53:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/26 19:58:07 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/28 12:54:26 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,35 +31,64 @@ char	*ft_before_line_break(char *str)
 		dest[i] = str[i];
 		i++;
 	}
-	dest[i] = str[i];
+	//dest[i] = str[i]; // rajoute le saut de ligne
 	return (dest);
 }
 
-char	*ft_after_line_break(char *str) // ma fonction de mon gnl
+// nouvelle fonction
+char	*ft_after_line_break(char *str)
 {
-	char	*dest;
 	int		i;
 	int		j;
+	char	*dest;
 
 	i = 0;
-	if (str[i] == 0)
-		return (free(str), str = NULL, str);
+	if (!str)
+		return (NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
-	dest = ft_calloc((ft_strlen(str) - i + 1), sizeof(char));
-	if (!dest)
+	if (!str[i]) // Si aucun '\n', rien à conserver
+	{
+		free(str);
 		return (NULL);
+	}
+	dest = ft_calloc((ft_strlen(str) - i), sizeof(char)); // ft_strlen - i suffit
+	if (!dest)
+		return (free(str), NULL);
 	j = 0;
 	while (str[i])
 		dest[j++] = str[++i];
 	free(str);
-	str = NULL;
 	return (dest);
 }
 
+// ma fonction de mon gnl
+// char	*ft_after_line_break(char *str)
+// {
+// 	char	*dest;
+// 	int		i;
+// 	int		j;
+
+// 	i = 0;
+// 	if (str[i] == 0)
+// 		return (free(str), str = NULL, str);
+// 	while (str[i] && str[i] != '\n')
+// 		i++;
+// 	dest = ft_calloc((ft_strlen(str) - i + 1), sizeof(char));
+// 	if (!dest)
+// 		return (NULL);
+// 	j = 0;
+// 	while (str[i])
+// 		dest[j++] = str[++i];
+// 	free(str);
+// 	str = NULL;
+// 	return (dest);
+// }
+
 //>>>>>>>>>> defference entre la mienne et celle de Paul --> la mienne 2 bytes encore dispo. Un seul pour celle de Paul
 
-// char	*ft_after_line_break(char *line) // fonction de Paul 
+// fonction de Paul 
+// char	*ft_after_line_break(char *line) 
 // {
 // 	int		i;
 // 	char	*remainder_line;
@@ -115,14 +144,14 @@ char	*make_line_brut(int fd, char *str)
 		if (!str)
 			return (NULL);
 	}
-	buffer = ft_calloc(30 + 1, sizeof(char));
+	buffer = ft_calloc(42 + 1, sizeof(char));
 	if (!buffer)
 		return (NULL);
 	nb_octets_read = 1;
 	while (nb_octets_read > 0 && !(ft_strchr(str, '\n')))
 	{
-		nb_octets_read = read(fd, buffer, 30);
-		if (nb_octets_read == -1)
+		nb_octets_read = read(fd, buffer, 42);
+		if (nb_octets_read == - 1)
 			return (NULL);
 		if (nb_octets_read == 0)
 			break ;
@@ -148,12 +177,12 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	rest = make_line_brut(fd, rest);
-	//printf(">>>> %d\n", ft_strlen(rest));
-/* 	if (ft_strlen(rest) == 0)
+/* 	
+	if (!rest)
 	{
 		free(rest);
 		rest = NULL;
-		return (rest);
+		return (NULL);
 	} */
 	line_to_print = ft_before_line_break(rest);
 	rest = ft_after_line_break(rest);

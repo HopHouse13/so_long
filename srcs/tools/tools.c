@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:53:58 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/26 18:48:58 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/27 20:25:21 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,24 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		j;
 	char	*dest;
 
+	if (!s1 && !s2)
+		return (NULL);
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
 	dest = ft_calloc(sizeof(char), (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!dest)
+	{
+		free (s1);
 		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
+	}
+	i = -1;
+	while (s1[++i])
 		dest[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j])
-	{
+	j = -1;
+	while (s2[++j])
 		dest[i + j] = s2[j];
-		j++;
-	}
 	dest[i + j] = '\0';
 	free(s1);
 	return (dest);

@@ -6,26 +6,34 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 02:13:57 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/26 18:55:44 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/28 13:10:43 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/so_long.h"
 // ok
+/* void	ft_print_tab(char ** tab)
+{
+	int	i = -1;
+
+	while (tab[++i])
+		printf("%s\n", tab[i]);
+} */
+
 int	ft_rectangular(t_game *game)
 {
 	long int	i;
-	int			nb_of_char;
-
+	int			nb_of_col;
+	
+	nb_of_col = ft_strlen(game->map.tab_map[0]);
 	i = 0;
-	nb_of_char = ft_strlen(game->map.tab_map[i]);
 	while (game->map.tab_map[i])
 	{
-		if (nb_of_char != ft_strlen(game->map.tab_map[i]))
+		if (nb_of_col != ft_strlen(game->map.tab_map[i]))
 			return (1);
 		i++; // nb de ligne dans le fichier
 	}
-	game->map.col_map = ft_strlen(game->map.tab_map[0]) - 1; // -1 car strlen compte le '\0' et je veux avoir uniquement le format de la map.
+	game->map.col_map = ft_strlen(game->map.tab_map[0]); // -1 car strlen compte le '\0' et je veux avoir uniquement le format de la map.
 	game->map.line_map = i; // inialisation du format de la map dans la variable "map"
 	return (0);
 }
@@ -39,22 +47,16 @@ int ft_out_of_screen_format(t_game *game)
 int	ft_surrounded_by_walls(t_game *game)
 {
 	int	i;
-	int	nb_of_lines;
-	int	nb_of_char;
-
-	nb_of_lines = 0;
-	while (game->map.tab_map[nb_of_lines])
-		nb_of_lines++;
-	nb_of_lines--; // parce que index de la premiere ligne commence a 0 et pas 1.
-	nb_of_char = ft_strlen(game->map.tab_map[0]);
-	nb_of_char--; // meme principe: le dernier caractere se trouve a l' index (nb de caracteres - 1)
+	
 	i = -1;
-	while (++i < nb_of_char)
-		if (game->map.tab_map[0][i] != '1' || game->map.tab_map[nb_of_lines][i] != '1')
+	while (++i < game->map.col_map)
+	{//printf("nombre de ligne[%ld]\n", game->map.line_map);//printf("premiere ligne[%c]\tderniere ligne[%c]\n\n", game->map.tab_map[0][i], game->map.tab_map[game->map.line_map - 1][i]);
+		if (game->map.tab_map[0][i] != '1' || game->map.tab_map[game->map.line_map - 1][i] != '1') // -1 car on passe en indexe (1eme ligne -> indexe 0)
 			return (1);
-	i = 0; // pas la peine de recontreler la premiere ligne -> i va commencer a 1 (2eme ligne)
-	while (++i < nb_of_lines) // nb_of_lines est a 4 -> ca evite de checker la derniere ligne inutilement
-		if(game->map.tab_map[i][0] != '1' || game->map.tab_map[i][nb_of_char - 1] != '1') // le dernier caractere est au niveau de d'index(nb de caractere - 1) -> -1
+	}
+	i = 0; // pas la peine de contreler la premiere ligne -> i va commencer a 1 (2eme ligne)
+	while (++i < game->map.line_map - 1) // "-1" evite de check la derniere ligne inutilement (deja check)
+		if(game->map.tab_map[i][0] != '1' || game->map.tab_map[i][game->map.col_map - 1] != '1') // le dernier caractere est au niveau de d'index(nb de caractere - 1) -> -1
 			return (1);
 	return (0);
 }
@@ -141,5 +143,3 @@ int	ft_collectible_exists(t_game *game)
 	game->map.collectible_counter = nb_of_collectable; // itialisation du nb de collectives dans la variable "map"
 	return (0);
 }
-
-
