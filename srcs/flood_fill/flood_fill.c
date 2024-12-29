@@ -6,16 +6,12 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 23:32:10 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/26 18:55:17 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/29 05:21:53 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/so_long.h"
 
-/* if (map.ff->tab_map[line + 1][col] == '1' && map.ff->tab_map[line - 1][col] == '1' &&
-		map.ff->tab_map[line][col + 1] == '1' &&  map.ff->tab_map[line][col - 1] == '1')
-		return (0);
-	else  */
 int	ft_flood_fill(t_game *game, t_map *map_ff, int line, int col)
 {
 	if (map_ff->collectible_counter == 0 && map_ff->exit_counter == 0)

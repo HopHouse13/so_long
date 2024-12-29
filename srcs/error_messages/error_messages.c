@@ -6,26 +6,28 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 18:02:13 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/28 13:59:14 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/29 05:21:34 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/so_long.h"
 
-	// 1 -> l'argument est une repertoire
-	// 2 -> fichier inexistant
-	// 3 -> maivaise extention
-	// 4 -> inouvrable (droits)
-	// 5 -> fichier vide
+	// 1	-> l'argument est une repertoire
+	// 2	-> fichier inexistant
+	// 3	-> maivaise extention
+	// 4	-> inouvrable (droits)
+	// 5	-> fichier vide
 
-	// 6 -> map non carre
-	// 7 -> map non entouree de mur
-	// 8 -> manque le player (P)
-	// 9 -> manque la sortie (E)
-	// 10 -> manque un collectible (C)
+	// 6	-> map non carre
+	// 7	-> map hors ecran
+	// 8	-> map non entouree de mur
+	// 9	-> manque le player (P)
+	// 10	-> manque la sortie (E)
+	// 11	-> manque un collectible (C)
+	// 12	-> element non autorise
 
-	// 11 -> collectibles non accessibles
-	// 12 -> exit non accessible
+	// 1	-> collectibles non accessibles
+	// 2	-> exit non accessible
 
 int	ft_error_messages_file_and_map(int code_error)
 {

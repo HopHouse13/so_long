@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:10:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/24 19:07:31 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/29 04:58:20 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_map_parsing_manag(char *file, t_game *game)
 	code_error = 0;
 	if (ft_rectangular(game) != 0)
 		code_error = 6;
-	if (ft_out_of_screen_format(game) != 0)
+	else if (ft_out_of_screen_format(game) != 0)
 		code_error = 7;
 	else if (ft_surrounded_by_walls(game) != 0)
 		code_error = 8;

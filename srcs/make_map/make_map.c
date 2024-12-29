@@ -26,31 +26,14 @@ void	ft_make_tab_map(char *file, t_game *game)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return ;
-	i = -1; // pour gagner des lignes
-	////////////////////////////////////////	version fonctionnelle mais un bit n'est pas libere
-	while (++i <= nb_line)
+	i = -1;
+	while (++i <= nb_line) // "<=" serre a appeller une derniere fois quand il n'y a plus rien a lire pour que la chaine de caractere "rest" soit correctement free. De plus cela permet de mettre 'NULL' qu dernier pointeur du double tableau pour signalier aue c'est la fin.
 	{
 		line = get_next_line(fd);
-		printf(">>>>>>> \t%s\n\n", line);
 		game->map.tab_map[i] = ft_strdup(line);
 		free(line);
 	}
-	//game->map.tab_map[i] = NULL;
-	//line = get_next_line(fd); // <-------------	ligne qui resout le probleme
 	close(fd);
-	/////////////////////////////////////////	version non foncitonnelle (probleme de mur) mais enleve le probleme de bit
-	/* line = get_next_line(fd);
-	while (line != NULL)
-	{
-		game->map.tab_map[++i] = ft_strdup(line);
-		printf("%s\n", game->map.tab_map[i]);
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-	game->map.tab_map[i] = NULL;
-	close(fd); */
-	////////////////////////////////////////
 	return ;
 }
 

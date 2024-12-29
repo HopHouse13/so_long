@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:29:05 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/26 20:12:30 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/29 05:24:04 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 		if (ft_file_parsing_manag(av[1]) &&
 			ft_map_parsing_manag(av[1], &game) &&
 			ft_flood_fill_manag(&game) &&
-			ft_game_start(&game))
+			ft_game_start_management(&game))
 		{
 			ft_free_img(&game);
 			ft_free(&game);

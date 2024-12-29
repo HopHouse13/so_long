@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/27 19:11:41 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/29 05:24:04 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	ft_free_ff_map(t_map *ff_map);
 
 // so_long
 
-int		ft_game_start(t_game *game);
+int		ft_game_start_management(t_game *game);
 int		ft_itialisation_img(t_game *game);
 int		ft_refresh_display(t_game *game);
 int		ft_display(t_game *game);
