@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 19:22:37 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/30 19:14:43 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/30 23:33:35 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,19 @@ int	ft_is_not_a_directory(char *file)
 // 
 // -----------------------------------------------------------------------------
 // 
-// Meme principe, si le fd a une valeur autre quew -1, ce la indiaue que la
-// fonction open a reussi.
-// Les flag "O_CREAT | O_EXCL" fonction de la maniere suivante:
-// 
-// O_EXCL peut avoir un souci avec les lien symboliques selon les systemes.
-
-// -1 -> non creation -> fichier existe deja -> return (0)
-// !-1 -> fichier inexistant -> creation du fichier -> return (1)
-// remove(file); (lib. standard <stdio.h>)
+// Meme principe, si le fd a une valeur autre que -1, ce la indique que la
+// fonction open a reussi a creer le fichier non existant.
+// Les flag "O_CREAT | O_EXCL" fonctionne de la maniere suivante:
+// O_CREAT -> si le fichier n'existe pas deja -> creation du fichier.
+// O_EXCL -> ce flag serre a faire echouer la fonction open si le fichier est
+// deja cree. (renvoit -1)
+// O_EXCL peut avoir un souci si le fichier existant est un lien symboliques 
+// (selon les systemes.
+// si le fd est -1 -> non creation -> fichier existe deja -> return (0)
+// !-1 -> fichier inexistant -> creation du fichier -> return (1) (erreur)
+// La fonction remove (lib. standard <stdio.h>) est utilisee pour supprimer
+// immediatement le fichier cree en cas de fichier inexistant. 
+// (verifier si c'est une fonction autorisee)
 
 int	ft_existing_file(char *file)
 {
