@@ -6,11 +6,11 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 05:29:13 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/29 05:29:47 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/29 19:40:53 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/so_long.h"
+#include "../../lib/so_long.h"
 
 int	ft_cross_management(t_game *game)
 {

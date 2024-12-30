@@ -6,28 +6,35 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 18:02:13 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/29 05:21:34 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/30 17:48:34 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/so_long.h"
+#include "../../lib/so_long.h"
 
-	// 1	-> l'argument est une repertoire
-	// 2	-> fichier inexistant
-	// 3	-> maivaise extention
-	// 4	-> inouvrable (droits)
-	// 5	-> fichier vide
+// _____________________________________________________________________________
+// 
+// Fonction qui gene l'affichage sur le terminal des messages d'erreurs en 
+// fonction du code_erreur transmit.
+// 
+// -----------------------------------------------------------------------------
+// 
+// 1	-> l'argument est une repertoire
+// 2	-> fichier inexistant
+// 3	-> maivaise extention
+// 4	-> inouvrable (droits)
+// 5	-> fichier vide
 
-	// 6	-> map non carre
-	// 7	-> map hors ecran
-	// 8	-> map non entouree de mur
-	// 9	-> manque le player (P)
-	// 10	-> manque la sortie (E)
-	// 11	-> manque un collectible (C)
-	// 12	-> element non autorise
+// 6	-> map non carre
+// 7	-> map hors ecran
+// 8	-> map non entouree de mur
+// 9	-> manque le player (P)
+// 10	-> manque la sortie (E)
+// 11	-> manque un collectible (C)
+// 12	-> element non autorise
 
-	// 1	-> collectibles non accessibles
-	// 2	-> exit non accessible
+// 1	-> collectibles non accessibles
+// 2	-> exit non accessible
 
 int	ft_error_messages_file_and_map(int code_error)
 {
@@ -42,7 +49,7 @@ int	ft_error_messages_file_and_map(int code_error)
 	else if (code_error == 5)
 		write(2, RED"Error\nFichier vide.\n"RESET, 30);
 	else if (code_error == 6)
-		write(2, RED"Error\nMap non rectangulaire en un seul bloc.\n"RESET, 55);
+		write(2, RED"Error\nMap non rectangulaire.\n"RESET, 39);
 	else if (code_error == 7)
 		write(2, RED"Error\nLa map est plus grande que l'ecran.\n"RESET, 52);
 	else if (code_error == 8)

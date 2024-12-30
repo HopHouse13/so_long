@@ -6,13 +6,13 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:59:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/29 05:27:25 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/29 19:43:45 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/so_long.h"
+#include "../../lib/so_long.h"
 
-int	ft_itialisation_img(t_game *game)
+int	ft_initialisation_img(t_game *game)
 {
 	game->graph.wall.img = mlx_xpm_file_to_image(game->graph.mlx_ptr, "./sprites/wall.xpm", &game->graph.wall.l, &game->graph.wall.h);
 	if (!game->graph.wall.img)

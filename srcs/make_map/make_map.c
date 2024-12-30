@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/so_long.h"
+#include "../../lib/so_long.h"
 
 void	ft_make_tab_map(char *file, t_game *game)
 {

@@ -6,24 +6,23 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:09:51 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/24 18:46:41 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/30 18:32:15 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/so_long.h"
+#include "../../lib/so_long.h"
 
-/* 	1 -> l'argument est une repertoire
- 	2 -> fichier inexistant
-	3 -> maivaise extention
-	4 -> inouvrable (droits)
-	5 -> fichier vide
-
-	
-	6 -> map non carre
-	7 -> map non entouree de mur
-	8 -> manque le player (P)
-	9 -> manque la sortie (E)
-	10 -> manque un item (C) */
+// _____________________________________________________________________________
+// 
+// Fonction qui coordonne les differents controles du fichier.
+// 
+// -----------------------------------------------------------------------------
+// 
+// 1 -> l'argument est une repertoire
+// 2 -> fichier inexistant
+// 3 -> maivaise extention
+// 4 -> inouvrable (droits)
+// 5 -> fichier vide
 
 int	ft_file_parsing_manag(char *file)
 {

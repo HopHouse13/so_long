@@ -6,21 +6,21 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/29 05:24:04 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/30 15:02:25 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "so_long.h"
+# include "../../lib/so_long.h"
 # include <unistd.h>
 # include <fcntl.h> // open
 # include <stdint.h>
 # include <stdlib.h> // malloc
-# include <stdio.h> // printf -> A SUPP
+# include <stdio.h> // fonction remove
 
-# include <mlx.h> // minilibx
+# include "mlx.h" // minilibx
 # include <X11/X.h>
 # include <X11/keysym.h>
 
@@ -120,10 +120,10 @@ char	**ft_make_ff_map(t_game *game);
 int		ft_flood_fill(t_game *game, t_map *map_ff, int x, int y);
 void	ft_free_ff_map(t_map *ff_map);
 
-// so_long
+// game
 
 int		ft_game_start_management(t_game *game);
-int		ft_itialisation_img(t_game *game);
+int		ft_initialisation_img(t_game *game);
 int		ft_refresh_display(t_game *game);
 int		ft_display(t_game *game);
 void	ft_display_player(t_game *game);

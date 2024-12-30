@@ -6,11 +6,11 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:53:58 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/27 20:25:21 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/30 15:01:36 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/so_long.h"
+#include "../../lib/so_long.h"
 
 int	ft_strlen(const char *s)
 {

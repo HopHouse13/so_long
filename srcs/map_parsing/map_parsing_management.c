@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_map_management.c                           :+:      :+:    :+:   */
+/*   map_parsing_management.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:10:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/29 04:58:20 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/30 15:11:27 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/so_long.h"
+#include "../../lib/so_long.h"
 
-/* 	6 -> map non carre
-	7 -> map non entouree de mur
-	8 -> manque le player (P)
-	9 -> manque la sortie (E)
-	10 -> manque un collectible (C) 
-	11 -> autre caractere que les caracteres autorises */
-
-	// faire un double tableau avec les lignes et collones puis l'envoyer 
-	// aux fonctions de check
+// _____________________________________________________________________________
+// 
+// Fonction qui gere les differentes etapes du controle de la map.
+// 
+// -----------------------------------------------------------------------------
+// 
+// 6 -> map non rectangulaire
+// 7 -> fenetre grand grande par rapport au foramt de l'ecran
+// 8 -> map non entouree de mur
+// 9 -> manque le player (P)
+// 10 -> manque la sortie (E)
+// 11 -> manque un collectible (C) 
+// 12 -> autre caractere que les caracteres autorises
 
 int	ft_map_parsing_manag(char *file, t_game *game)
 {
 	int		code_error;
-	
+
 	ft_make_tab_map(file, game);
 	code_error = 0;
 	if (ft_rectangular(game) != 0)

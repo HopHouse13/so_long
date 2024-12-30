@@ -6,11 +6,11 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 00:47:22 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/29 05:06:54 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/30 12:17:25 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/so_long.h"
+#include "../../lib/so_long.h"
 
 void ft_free_img(t_game *game)
 {
@@ -43,6 +43,7 @@ void	ft_free(t_game *game)
 			free(game->map.tab_map[i]);
 		free(game->map.tab_map);
 	}
+	ft_free_img(game);
 	if (game->graph.win_ptr)
 	{
 		mlx_destroy_window(game->graph.mlx_ptr, game->graph.win_ptr);

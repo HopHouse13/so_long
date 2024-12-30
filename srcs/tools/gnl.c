@@ -6,11 +6,11 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:53:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/29 05:07:16 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/29 19:22:33 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/so_long.h"
+#include "../../lib/so_long.h"
 
 char	*ft_before_line_break(char *str)
 {
