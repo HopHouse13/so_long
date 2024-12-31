@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 19:22:37 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/30 23:33:35 by ubuntu           ###   ########.fr       */
+/*   Updated: 2024/12/31 01:33:54 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,17 @@ int	ft_existing_file(char *file)
 	return (0);
 }
 
+// _____________________________________________________________________________
+// 
+// Fonction qui controle si le fichier a la bonne extention (.ber)
+// 
+// -----------------------------------------------------------------------------
+// 
+// La fonction compte le nombre de caractere dane le nom du fichier et va
+// verifier si les 4 derniers caracteres sont bien ".ber" et que le nom du
+// fichier ai bien au moins 4 caracteres.
+// si ces conditions ne sont pas remplis, la fonction renvoie (1).
+
 int	ft_valid_extension(char *file)
 {
 	int	size;
@@ -85,6 +96,17 @@ int	ft_valid_extension(char *file)
 	return (0);
 }
 
+// _____________________________________________________________________________
+// 
+// Fonction qui controle si le fichier est ouvrable.
+// 
+// -----------------------------------------------------------------------------
+// 
+// La controle est sur le meme principe qu'avant en tentant d'ouvrir le fichier.
+// (car oui a ce niveau la du programme, on sait que c'est un fichier avec
+// la bonne extention)
+// si l'ouverture fail -> l'utilisateur na pas les droits pour l'ouvrir.
+
 int	ft_file_not_openable(char *file)
 {
 	int	fd;
@@ -95,6 +117,16 @@ int	ft_file_not_openable(char *file)
 	close(fd);
 	return (0);
 }
+// _____________________________________________________________________________
+// 
+// Fonction qui controle est vide ou pas.
+// 
+// -----------------------------------------------------------------------------
+// 
+// Maintenant qu'on a un fichier avec la bonne extention et qu'on peut ouvrir,
+// Cette fonction va tenter de lire un caractere du fichier.
+// Si elle y arrive, read va retourner 1 (1 caractere lu) -> return (1).
+// Sinon read va retourner 0 -> return (0).
 
 int	ft_empty_file(char *file)
 {
