@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 21:14:23 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/30 16:39:52 by ubuntu           ###   ########.fr       */
+/*   Updated: 2025/01/01 20:27:48 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_flood_fill_manag(t_game *game)
 	t_map	map_ff;
 
 	ft_initialisation_struct_ff(game, &map_ff);
-	ft_flood_fill(game, &map_ff, game->player.y_player, game->player.x_player);
+	ft_flood_fill(game, &map_ff, game->player.y, game->player.x);
 	if (map_ff.collectible_counter != 0 || map_ff.exit_counter != 0)
 	{
 		if (map_ff.collectible_counter != 0)

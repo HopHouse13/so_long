@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/31 18:18:39 by ubuntu           ###   ########.fr       */
+/*   Updated: 2025/01/01 20:27:48 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <stdio.h> // fonction remove
 
 # include "mlx.h" // minilibx
-# include <X11/X.h>
-# include <X11/keysym.h>
+# include <X11/X.h> // keypress
+# include <X11/keysym.h> // constant itentifiant touche
 
 # define RESET "\033[0m"
 # define BLACK "\033[30m"
@@ -47,8 +47,8 @@ typedef struct	s_img
 
 typedef struct	s_player
 {
-	long int	x_player;
-	long int	y_player;
+	long int	x;
+	long int	y;
 	long int	movements;
 	t_img		p_loose;
 	t_img		p_win;
@@ -125,15 +125,15 @@ void	ft_free_ff_map(t_map *ff_map);
 int		ft_game_start_management(t_game *game);
 int		ft_initialisation_img(t_game *game);
 int 	ft_initialisation_img_1(t_game *game);
-void	ft_refresh_display(t_game *game);
-void	ft_display_player(t_game *game);
+int		ft_refresh_display(t_game *game);
+void	ft_display(t_game *game);
 void	ft_display_elem(t_game *game, long int x, long int y);
 int		ft_input_management(int keysym, t_game *game);
 int		ft_movement_management(int keysym, t_game *game);
 int		ft_movement_possible(char direction, t_game *game);
 int		ft_print_movement_nb(t_game *game);
 int		ft_cross_management(t_game *game);
-void	ft_tile_state_change(t_game *game);
+void	ft_collectibles_and_exit_management(t_game *game);
 
 
 // fonction de la gestion des messages d'erreurs
@@ -153,21 +153,10 @@ void	ft_putchar(char c);
 void	ft_putnbr_and_return_to_line(long int nb);
 void 	ft_free_img(t_game *game);
 
-//void	ft_free(t_game *game);
-// int		ft_line_character_counter(char *file);
-
 // gnl
 
 char	*get_next_line(int fd);
 char	*ft_before_line_break(char *str);
 char	*ft_after_line_break(char *str);
-
-// gnl_test_A_SUPPRIMER
-
-char	*get_line_fd(int fd, char *line);
-char	*read_until_n(int fd, char *line, char *buffer, int bytes_red);
-char	*clean_line(char *line);
-char	*get_remainder(char *line);
-char	*ft_substr(char const *s_src, int start, int len);
 
 #endif

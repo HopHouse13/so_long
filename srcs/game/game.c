@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:59:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/31 19:26:29 by ubuntu           ###   ########.fr       */
+/*   Updated: 2025/01/01 20:27:48 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,13 @@ int	ft_initialisation_img_1(t_game *game)
 // Dans ce cas, la fonction va parcourir le double tableau map et afficher
 // l'enssemble des elements de la map et le player.
 // Pour chaque coordonnee, deux fonctions peut etre appelees. Si les coordonnees
-// de la case sont les meme que celle du player -> ft_display_player.
+// de la case sont les meme que celle du player -> ft_display.
 // sinon (pourtout le reste) -> ft_display_elem.
 //
 // Apres avoir affiche la totalite des elements, la fonction passe flag_refresh
 // a 1. Cela evite les refresh inutiles.
 
-void	ft_refresh_display(t_game *game)
+int	ft_refresh_display(t_game *game)
 {
 	long int	x;
 	long int	y;
@@ -131,8 +131,8 @@ void	ft_refresh_display(t_game *game)
 			x = 0;
 			while (x < game->map.col_map)
 			{
-				if (game->player.y_player == y && game->player.x_player == x)
-					ft_display_player(game);
+				if (game->player.y == y && game->player.x == x)
+					ft_display(game);
 				else
 					ft_display_elem(game, x, y);
 				x++;
@@ -141,6 +141,7 @@ void	ft_refresh_display(t_game *game)
 		}
 		game->graph.flag_refresh = 1;
 	}
+	return (0);
 }
 // _____________________________________________________________________________
 // 
@@ -184,21 +185,21 @@ void	ft_refresh_display(t_game *game)
 // transmit par la fonction mere (ft_refresh_display) avec le defilement dans
 // le double tableau map_tab.
 
-void	ft_display_player(t_game *game)
+void	ft_display(t_game *game)
 {
-	if (game->map.tab_map[game->player.y_player][game->player.x_player] == 'E'
+	if (game->map.tab_map[game->player.y][game->player.x] == 'E'
 		&& game->map.collectible_counter != 0 && game->player.p_and_e.img)
 		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr,
-			game->player.p_and_e.img, game->player.x_player * ELEM_SIZE,
-			game->player.y_player * ELEM_SIZE);
+			game->player.p_and_e.img, game->player.x * ELEM_SIZE,
+			game->player.y * ELEM_SIZE);
 	else if (game->map.collectible_counter == 0 && game->player.p_win.img)
 		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr,
-			game->player.p_win.img, game->player.x_player * ELEM_SIZE,
-			game->player.y_player * ELEM_SIZE);
+			game->player.p_win.img, game->player.x * ELEM_SIZE,
+			game->player.y * ELEM_SIZE);
 	else if (game->player.p_loose.img)
 		mlx_put_image_to_window(game->graph.mlx_ptr, game->graph.win_ptr,
-			game->player.p_loose.img, game->player.x_player * ELEM_SIZE,
-			game->player.y_player * ELEM_SIZE);
+			game->player.p_loose.img, game->player.x * ELEM_SIZE,
+			game->player.y * ELEM_SIZE);
 }
 
 // _____________________________________________________________________________
@@ -208,7 +209,7 @@ void	ft_display_player(t_game *game)
 // 
 // -----------------------------------------------------------------------------
 // 
-// C'est exatement le meme principe que la fonction ft_display_player.
+// C'est exatement le meme principe que la fonction ft_display.
 // Sauf que les coordonnees des elements sont dirrectement transmises par la
 // fonction mere avec le le parcourt du double tableau et les x et y.
 // Chaaue appel de ft_display_elem est pour une cooredonnee bien precise.

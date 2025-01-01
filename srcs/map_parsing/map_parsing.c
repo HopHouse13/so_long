@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 02:13:57 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/30 15:05:58 by ubuntu           ###   ########.fr       */
+/*   Updated: 2025/01/01 20:27:48 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,8 @@ int	ft_player_exists(t_game *game)
 			if (game->map.tab_map[i][j] == 'P')
 			{
 				nb_of_player++;
-				game->player.x_player = j;
-				game->player.y_player = i;
+				game->player.x = j;
+				game->player.y = i;
 			}
 			j++;
 		}

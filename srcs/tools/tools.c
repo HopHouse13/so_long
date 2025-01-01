@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:53:58 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/30 15:01:36 by ubuntu           ###   ########.fr       */
+/*   Updated: 2025/01/01 20:27:48 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ void	ft_initialisation_structs(t_game *game)
 	game->map.line_map = 0;
 	game->map.exit_counter = 0;
 	game->map.collectible_counter = 0;
-	game->player.x_player = 0;
-	game->player.y_player = 0;
+	game->player.x = 0;
+	game->player.y = 0;
 	game->player.movements = 0;
 	game->player.p_loose.img = NULL;
 	game->player.p_win.img = NULL;
