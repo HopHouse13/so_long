@@ -6,12 +6,12 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2025/01/01 20:27:48 by ubuntu           ###   ########.fr       */
+/*   Updated: 2025/01/02 17:20:32 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 # include "../../lib/so_long.h"
 # include <unistd.h>
@@ -38,14 +38,14 @@
 # define SCREEN_LENGHT 1920
 # define SCREEN_WILTH 1080
 
-typedef struct	s_img
+typedef struct s_img
 {
-	void		*img; // ptr de l'image cree
+	void		*img;
 	int			l;
 	int			h;
 }				t_img;
 
-typedef struct	s_player
+typedef struct s_player
 {
 	long int	x;
 	long int	y;
@@ -55,7 +55,7 @@ typedef struct	s_player
 	t_img		p_and_e;
 }	t_player;
 
-typedef struct	s_graph
+typedef struct s_graph
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -67,26 +67,23 @@ typedef struct	s_graph
 	t_img		e_close;
 }				t_graph;
 
-typedef struct	s_map
+typedef struct s_map
 {
-	//struct s_map	*ff; // copie de la map pour le ff
-	char 		**tab_map; // original_map
-	long int	col_map; // largeur de la map
-	long int	line_map; // hauteur de la map
-	int			exit_counter; // compteur de d'exit
-	int			collectible_counter; // compteur de collectibles
+	char		**tab_map;
+	long int	col_map;
+	long int	line_map;
+	int			exit_counter;
+	int			collectible_counter;
 }				t_map;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	t_map		map;
 	t_player	player;
 	t_graph		graph;
 }				t_game;
 
-
 // Fonctions du parsing du fichier
-
 int		ft_file_parsing_manag(char *file);
 int		ft_is_not_a_directory(char *file);
 int		ft_existing_file(char *file);
@@ -95,25 +92,21 @@ int		ft_file_not_openable(char *file);
 int		ft_empty_file(char *file);
 
 // Fonctions du parsing de la map
-
 int		ft_map_parsing_manag(char *file, t_game *game);
 int		ft_rectangular(t_game *game);
-int 	ft_out_of_screen_format(t_game *game);
+int		ft_out_of_screen_format(t_game *game);
 int		ft_surrounded_by_walls(t_game *game);
 int		ft_player_exists(t_game *game);
 int		ft_exit_exists(t_game *game);
 int		ft_collectible_exists(t_game *game);
 int		ft_other_elem(t_game *game);
 
-
 // Fonctions creation de la map
-
 void	ft_make_tab_map(char *file, t_game *game);
 int		ft_line_counter(char *file);
 char	*ft_strdup(const char *s_src);
 
 // Flood_fill
-
 int		ft_flood_fill_manag(t_game *game);
 void	ft_initialisation_struct_ff(t_game *game, t_map *game_ff);
 char	**ft_make_ff_map(t_game *game);
@@ -121,10 +114,9 @@ int		ft_flood_fill(t_game *game, t_map *map_ff, int x, int y);
 void	ft_free_ff_map(t_map *ff_map);
 
 // game
-
 int		ft_game_start_management(t_game *game);
 int		ft_initialisation_img(t_game *game);
-int 	ft_initialisation_img_1(t_game *game);
+int		ft_initialisation_img_1(t_game *game);
 int		ft_refresh_display(t_game *game);
 void	ft_display(t_game *game);
 void	ft_display_elem(t_game *game, long int x, long int y);
@@ -135,14 +127,11 @@ int		ft_print_movement_nb(t_game *game);
 int		ft_cross_management(t_game *game);
 void	ft_collectibles_and_exit_management(t_game *game);
 
-
 // fonction de la gestion des messages d'erreurs
-
 int		ft_error_messages_file_and_map(int code_error);
 void	ft_error_messages_ff(int code_error);
 
 // Tools
-
 int		ft_strlen(const char *s);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strchr(const char *str, int c);
@@ -151,10 +140,9 @@ void	ft_free(t_game *game);
 void	ft_initialisation_structs(t_game *game);
 void	ft_putchar(char c);
 void	ft_putnbr_and_return_to_line(long int nb);
-void 	ft_free_img(t_game *game);
+void	ft_free_img(t_game *game);
 
 // gnl
-
 char	*get_next_line(int fd);
 char	*ft_before_line_break(char *str);
 char	*ft_after_line_break(char *str);

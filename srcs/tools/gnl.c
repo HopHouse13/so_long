@@ -6,11 +6,25 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:53:02 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/29 19:22:33 by ubuntu           ###   ########.fr       */
+/*   Updated: 2025/01/02 15:47:34 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../lib/so_long.h"
+
+// _____________________________________________________________________________
+// 
+// GNL un peu modifie.
+//
+// -----------------------------------------------------------------------------
+// 
+// Il n'est pas tres claire mais fonctionnel. Je l'ai repris de mon projet GNL.
+// La seule modification reside dans le fait qu'il renvoie plus de saut de ligne
+// La gestion des sauts de ligne dans le reste du programme m'etait genant.
+// Notamment lors de l'inicialisation des compteurs ligne/colonne.
+// La modification a consiste a supprimer la ligne "dest[i] = str[i];" entre le
+// la boucle pour copier "str" sur "dest" et return de ft_before_line_break.
+// ligne 48
 
 char	*ft_before_line_break(char *str)
 {
@@ -31,11 +45,9 @@ char	*ft_before_line_break(char *str)
 		dest[i] = str[i];
 		i++;
 	}
-	//dest[i] = str[i]; // rajoute le saut de ligne
 	return (dest);
 }
 
-// nouvelle fonction
 char	*ft_after_line_break(char *str)
 {
 	int		i;
@@ -45,14 +57,14 @@ char	*ft_after_line_break(char *str)
 	i = 0;
 	if (!str)
 		return (NULL);
-	while (str[i] && str[i] != '\n')
+	while (str[i] != '\0' && str[i] != '\n')
 		i++;
-	if (!str[i]) // Si aucun '\n', rien à conserver
+	if (!str[i])
 	{
 		free(str);
 		return (NULL);
 	}
-	dest = ft_calloc((ft_strlen(str) - i), sizeof(char)); // ft_strlen - i suffit
+	dest = ft_calloc((ft_strlen(str) - i), sizeof(char));
 	if (!dest)
 		return (free(str), NULL);
 	j = 0;
@@ -80,7 +92,7 @@ char	*make_line_brut(int fd, char *str)
 	while (nb_octets_read > 0 && !(ft_strchr(str, '\n')))
 	{
 		nb_octets_read = read(fd, buffer, 42);
-		if (nb_octets_read == - 1)
+		if (nb_octets_read == -1)
 			return (NULL);
 		if (nb_octets_read == 0)
 			break ;

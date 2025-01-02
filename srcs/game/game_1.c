@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 05:26:52 by ubuntu            #+#    #+#             */
-/*   Updated: 2025/01/01 20:31:57 by ubuntu           ###   ########.fr       */
+/*   Updated: 2025/01/02 14:44:42 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // 
 // Fonction qui verifie si le pointeur de la window est bien initilise et fais
 // la distinction si la touche ESC ou bien une autre touche a ete pressee.
-// En fonction de la touche pressee, la fonction appele soit mlx_loop_end (pour
+// En fonction de la touche pressee, la fonction appelle soit mlx_loop_end (pour
 // clore la bouple d'evenement), soit ft_movement_management (pour gerer le
 // deplacement du player)
 //
