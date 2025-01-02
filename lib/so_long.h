@@ -6,23 +6,21 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:24:31 by ubuntu            #+#    #+#             */
-/*   Updated: 2025/01/02 17:20:32 by ubuntu           ###   ########.fr       */
+/*   Updated: 2025/01/02 17:31:45 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../../lib/so_long.h"
 # include <unistd.h>
-# include <fcntl.h> // open
+# include <fcntl.h>
 # include <stdint.h>
-# include <stdlib.h> // malloc
-# include <stdio.h> // fonction remove
+# include <stdlib.h>
 
-# include "mlx.h" // minilibx
-# include <X11/X.h> // keypress
-# include <X11/keysym.h> // constant itentifiant touche
+# include "mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 
 # define RESET "\033[0m"
 # define BLACK "\033[30m"

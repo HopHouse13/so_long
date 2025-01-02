@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 19:22:37 by ubuntu            #+#    #+#             */
-/*   Updated: 2024/12/31 10:40:19 by ubuntu           ###   ########.fr       */
+/*   Updated: 2025/01/02 17:27:02 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	ft_is_not_a_directory(char *file)
 // si fd -1 -> non creation -> fichier existe deja -> return (0)
 // si fd !-1 -> fichier inexistant -> creation du fichier -> return (1) (erreur)
 // 
-// J'avais mis en place la fonction remove (lib. standard <stdio.h>)juste avant
-// de renvoyer (1)(erreur). Cette fonction est utilisee pour supprimer
+// J'avais mis en place la fonction remove(file) (lib. standard <stdio.h>)juste
+// avant de renvoyer (1)(erreur). Cette fonction est utilisee pour supprimer
 // immediatement le fichier cree en cas de fichier inexistant. Cette fonction
 // est interdite selon le sujet de so_long. Dommage.
 
@@ -68,7 +68,6 @@ int	ft_existing_file(char *file)
 	if (fd != -1)
 	{
 		close(fd);
-		remove(file);
 		return (1);
 	}
 	return (0);
